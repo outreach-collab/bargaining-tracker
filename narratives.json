@@ -1,0 +1,552 @@
+{
+  "meta": {
+    "lastUpdatedFromSource": "2026-05-14",
+    "sourceUrl": "https://harvardgradunion.org/bargaining-updates/",
+    "trackerCsvUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2Z_IklNpMnI_xu3QaZsNCotdViEp43n6QzmMh4_BI_7d4NoXAULVRvVGWpiyTpixA81AnGzL8BA9a/pub?gid=0&single=true&output=csv",
+    "summaryCsvUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2Z_IklNpMnI_xu3QaZsNCotdViEp43n6QzmMh4_BI_7d4NoXAULVRvVGWpiyTpixA81AnGzL8BA9a/pub?gid=317820783&single=true&output=csv",
+    "strikeStartDate": "2026-04-21",
+    "bargainingStartDate": "2025-02-26"
+  },
+
+  "articles": [
+    {
+      "id": "X",
+      "name": "Ground Rules",
+      "category": "non-economic",
+      "status": "no-agreement",
+      "statusLabel": "No agreement",
+      "unionAsks": "Open bargaining (members allowed to observe in person and over Zoom). Enforceable protections against ICE/DHS during sessions: key-card access to the bargaining room, advance notification if federal agents arrive on campus. Accessibility accommodations.",
+      "harvardPosition": "Rejected open bargaining repeatedly. Argued that observers would create a 'chilling effect.' Refused to lock the bargaining room door or commit to ICE protections, directing the union to existing Office of General Counsel guidelines that don't materially protect against detention. Accepted one specific disability accommodation."
+    },
+    {
+      "id": "2",
+      "name": "Titles and Classifications",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Limited public detail.",
+      "harvardPosition": "Included in Harvard's 5/14 full-contract package."
+    },
+    {
+      "id": "3",
+      "name": "Employment Appointment Letter",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Timely appointment letters that include the basic info workers need: department/program, tax rate, funding source. So people aren't left without paychecks when admin systems lag. Accountability when letters arrive late.",
+      "harvardPosition": "Added a line that pay is 'taxable income' but refused to fix the late-letter problem. Called the union's information requirements 'cumbersome and onerous.' Blames individual departments and programs for delays rather than committing to systemic accountability."
+    },
+    {
+      "id": "4",
+      "name": "Employment Appointment Security",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Full pay for TFs whose sections are canceled. At least two weeks' notice if that happens. Protections for RAs whose appointments are cut. As of February 2026, this article also absorbed the Lab Transition Program: six months of guaranteed funding, tuition, healthcare, and benefits for RAs leaving unsafe, abusive, or broken advising relationships (modeled on MIT's program).",
+      "harvardPosition": "Argued the union's appointment-security proposal 'did a disservice to prior efforts' because the union disagreed with Harvard's reading of who's eligible for security pay. Has not engaged meaningfully with the lab transition program component."
+    },
+    {
+      "id": "5",
+      "name": "Job Posting",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Protections and agreements around job postings for in-unit positions: transparency about available work and fair access.",
+      "harvardPosition": "Initial proposal from fall 2025. Limited public detail."
+    },
+    {
+      "id": "6",
+      "name": "Grievance and Arbitration",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Realistic timeline for filing grievances: initially 90 business days (roughly one semester), narrowed in negotiation to 45. Codified privacy protections for workers who file grievances. Strong anti-retaliation language with a clear, usable definition of retaliation.",
+      "harvardPosition": "Started at 30 days for filing, moved to 35 (an extra five days). Refused to codify acceptance of late grievances, claiming extensions could be granted on a case-by-case basis through 'mutual agreement.' Rejected the union's definition of retaliation as 'too broad' and 'outside their control.' Resisted codifying privacy protections."
+    },
+    {
+      "id": "7",
+      "name": "Non-Discrimination, Harassment, and Abuse",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Codified identity-specific protections (race, color, religion, caste, creed, sex, sexual orientation, etc.) that exist in the current contract. 'Real Recourse': access to the union grievance process as an option in addition to Harvard's internal process, so survivors can choose. Anti-retaliation language. Right to union representation in meetings. (1 in 5 student workers have experienced harassment, discrimination, or bullying in their workplace.)",
+      "harvardPosition": "Removed identity-specific protections from contract language; defers to University-wide policy that Harvard can amend at any time without union input. Refuses union grievance access (survivors get only the internal process Harvard fully controls). Initially stripped out the right to union representation in meetings. Added 'or retaliation' phrasing as a minor concession. Cited that ~10% of complaints being dismissed is 'negligible.'"
+    },
+    {
+      "id": "8",
+      "name": "Academic Retaliation",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Explicit protections against academic retaliation from faculty mentors and advisors: bad rec letters, denied professional opportunities, blocked academic progress. Other graduate union contracts protect against academic retaliation; Harvard's does not.",
+      "harvardPosition": "Says current internal mechanisms are sufficient. Initially questioned why a neutral, non-University-run process is needed when Harvard has its own. At one session asked how the union knows the current process isn't working given 'very little use.' Union response: reporting misconduct to a board of the accused's colleagues suppresses reporting."
+    },
+    {
+      "id": "9",
+      "name": "Intellectual Property, Scholarly and Research Misconduct",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Student worker rights to intellectual property they produce. Clear dispute resolution processes for research misconduct disputes.",
+      "harvardPosition": "Proposed cuts to existing IP protections from the previous contract. Resisted union's clarifying questions."
+    },
+    {
+      "id": "10",
+      "name": "Health and Safety",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Stronger and clearer timelines for disability accommodations. Safer approach to 'wellness checks' that doesn't default to armed police response. Protection against involuntary police entry into non-public spaces where workers live and work. Real accountability around accommodations data.",
+      "harvardPosition": "Says enforceable timelines would be 'difficult.' Has not provided requested data on denied accommodation requests or informal resolutions. Director of Disability Resources briefed the union but said the data wasn't 'readily available.'"
+    },
+    {
+      "id": "11",
+      "name": "Training",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Rights to workplace-related trainings. Limited public detail on specific disputes.",
+      "harvardPosition": "Harvard's initial proposal in fall 2025."
+    },
+    {
+      "id": "13",
+      "name": "Non-Citizen Student Worker Rights",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Comprehensive legal assistance in the event of detention or federal immigration enforcement. Expanded leave provisions and remote-work provisions for immigration-related proceedings. Protections against federal presence on campus. Limits on the University sharing student worker records with federal agencies.",
+      "harvardPosition": "Ghosted the union for 9+ months without responding (June 2025–February 2026). Eventually said protections against ICE would interfere with Harvard's 'relationship with the federal government,' though peer universities like the University of California have offered similar provisions for nearly a decade. Refused to release ~$400K from the existing legal defense fund."
+    },
+    {
+      "id": "15",
+      "name": "Workspace and Materials",
+      "category": "non-economic",
+      "status": "ta",
+      "statusLabel": "TA · 2/2/2026",
+      "unionAsks": "Available private space for student workers to hold office hours, supervisor meetings, etc., reasonably close to the workplace.",
+      "harvardPosition": "Initially resisted, then agreed. TA reached 2/2/2026 — first TA of the bargaining cycle."
+    },
+    {
+      "id": "16",
+      "name": "Workload",
+      "category": "non-economic",
+      "status": "withdrawn",
+      "statusLabel": "Withdrawn 5/14/2026",
+      "unionAsks": "Protections against unpaid teaching labor (workers performing the same job as paid peers without pay). Accountability around appointment-period workloads. Limits on workload increases without compensation.",
+      "harvardPosition": "Did not engage meaningfully. Article was strategically withdrawn by the union on 5/14/2026 as part of broader package negotiations."
+    },
+    {
+      "id": "18",
+      "name": "Union Access and Rights",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Information about workers in the unit (Harvard has invoked FERPA to obstruct this, including treating pay rates as 'educational records'). Union representation in worker orientations. Dedicated, ADA-compliant union workspaces across campuses. Paid union leadership positions (executive board members currently volunteer uncompensated).",
+      "harvardPosition": "Resists information sharing on FERPA grounds. Not engaging substantively on workspace or paid positions."
+    },
+    {
+      "id": "19",
+      "name": "Discipline and Discharge",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Just cause for discipline. Full due process. Clear union representation rights. No discipline without an investigation.",
+      "harvardPosition": "Proposed a faster, weaker process where the University can discipline workers without any investigation, forcing workers to fight discipline after it's already been imposed."
+    },
+    {
+      "id": "20",
+      "name": "Compensation",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation · The big one",
+      "unionAsks": "$55,000 base salary (up from $49,998). $25/hour floor for hourly workers (up from $21.50). Automatic annual increases of 5% or inflation, whichever is higher. Pay equity between TFs and RAs — TFs after the G4 year in many humanities and social sciences departments currently make only ~$26,000 for teaching the standard load.",
+      "harvardPosition": "Started with roughly 1% raises over 4 years. Hourly workers offered $0.50/year. Many TFs would still qualify for SNAP food benefits through 2029. Harvard's lead negotiator called the proposal 'generous,' noting the entire raise would cost $1 million — less than 0.01% of the $10.2 billion flexible endowment. Told the bargaining committee in March that TFs needing more money should 'look into getting jobs in the summer' and 'work 4-5 sections.'"
+    },
+    {
+      "id": "21",
+      "name": "Health and Dental Insurance",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Full dental coverage. Expanded healthcare fund. Continued access to healthcare during leaves of absence (critical for workers on medical leave who currently lose coverage at the worst time).",
+      "harvardPosition": "Limited engagement so far. Has not delivered a substantive counter."
+    },
+    {
+      "id": "22",
+      "name": "Childcare Fund",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Continuation of the prior $16,000-per-child coverage.",
+      "harvardPosition": "$6,500/year per child. For context: Harvard's own campus childcare facilities charge $3,780/month — so Harvard's offered fund covers less than two months of Harvard's own childcare. The proposed childcare benefit also moves from union-administered to University-administered, with no contractual obligation to pay out a single penny."
+    },
+    {
+      "id": "23",
+      "name": "Hourly SW Access to Benefit Pools",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Hourly student workers should have full access to benefit funds, currently blocked. Eligibility should not depend on appointment type.",
+      "harvardPosition": "Continued exclusion."
+    },
+    {
+      "id": "24",
+      "name": "Legal Expense Fund",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Expanded legal expense fund with explicit coverage for urgent immigration representation. Release of the ~$400K already owed under the existing contract that Harvard has failed to make accessible.",
+      "harvardPosition": "Proposed replacing the union-administered legal fund with a subsidized MetLife legal services plan. The MetLife plan explicitly does NOT cover urgent immigration representation (rapid response when work authorization is at risk). Also appears not to cover Title IX representation. Refused to engage with the existing $400K issue, calling it 'not relevant.'"
+    },
+    {
+      "id": "26",
+      "name": "Leave Provisions",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "12 weeks of paid family and medical leave. Healthcare coverage continued during leaves (so no one loses insurance during a medical crisis). Retained student status during medical leave. 'Placeholder' credits that let workers on leave maintain enrollment.",
+      "harvardPosition": "Rejected paid family/medical leave. Rejected continued healthcare during leaves. Rejected placeholder credits, claiming they would 'reward' students not making academic progress."
+    },
+    {
+      "id": "27",
+      "name": "Holidays, Personal Days, Vacation",
+      "category": "non-economic",
+      "status": "ta",
+      "statusLabel": "TA · 4/9/2026",
+      "unionAsks": "Spring break leave for student workers. Required notice that workers are entitled to personal time and holidays. Expanded eligibility to include hourly workers. One vacation day per month for TFs.",
+      "harvardPosition": "Initially dismissive, implying TFs' schedules were already 'flexible' enough. Reached tentative agreement on 4/9/2026 — second TA of the bargaining cycle."
+    },
+    {
+      "id": "30",
+      "name": "Emergency Grant",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Expanded emergency grant fund. Clear and accessible application/distribution process.",
+      "harvardPosition": "No counter yet on record."
+    },
+    {
+      "id": "33",
+      "name": "Union Security",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Agency shop / 'fair-share' arrangement — everyone who benefits from the contract contributes via dues or an equivalent fee. Standard across most graduate union contracts. Already in place for other Harvard unions (HUCTW).",
+      "harvardPosition": "Resists. Argues graduate workers are 'different' because they enter as students. Wants to maintain current open-shop structure where many workers benefit from the contract without contributing to union finances."
+    },
+    {
+      "id": "AF",
+      "name": "Academic Freedom",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation · NEW",
+      "unionAsks": "Academic freedom protections on matters relevant to the subject and purpose of the worker's appointment. Other graduate union contracts include this; Harvard's does not.",
+      "harvardPosition": "Rejected without offering a counter. Doesn't want real language on this issue, even though it directly affects student workers' jobs."
+    },
+    {
+      "id": "LTP",
+      "name": "Lab Transition Program",
+      "category": "economic",
+      "status": "withdrawn",
+      "statusLabel": "Folded into Article 4",
+      "unionAsks": "Six months of guaranteed funding, tuition, healthcare, and full benefits for salaried RAs leaving unsafe, abusive, or broken advising relationships. Modeled on MIT's Guaranteed Transitional Support program.",
+      "harvardPosition": "Did not respond as a standalone proposal. The union folded this into Article 4 (Appointment Security) on 4/13/2026."
+    },
+    {
+      "id": "AT",
+      "name": "Accessible Transit",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation · NEW",
+      "unionAsks": "Guaranteed accessible transportation for student workers with disability accommodations via the Daytime Van Service. Expanded to both daytime and evening service across all Harvard campuses. Ride-share coverage when van wait times exceed 30 minutes.",
+      "harvardPosition": "No real engagement yet."
+    },
+    {
+      "id": "FA",
+      "name": "Fund Access",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Workers retain control and bargained-for access to benefit funds. Maintain union-administered benefit structure with clear rules.",
+      "harvardPosition": "Eliminate union-administered benefit funds entirely. Replace with a University-administered program (much of which already exists as extracontractual programs Harvard repackaged as if they were won at the table). Under Harvard's proposal, the University would not be contractually obligated to pay out a single penny. Disputes excluded from grievance. Approximately 1,000 workers would be excluded altogether: hourly workers, many Master's students, and DDes, EdLD, DrPH, and SJD candidates."
+    },
+    {
+      "id": "BFR",
+      "name": "Benefit Fund Rules",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Rules for application and distribution of benefit funds across the contract: eligibility, timelines, appeals process, transparency.",
+      "harvardPosition": "Wants discretion to administer funds without bargained rules."
+    },
+    {
+      "id": "BT",
+      "name": "Benefits Trust",
+      "category": "economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation",
+      "unionAsks": "Shift management of benefit funds from the union to an independent trust, reducing administrative burden for both parties.",
+      "harvardPosition": "No counter on record."
+    },
+    {
+      "id": "NR",
+      "name": "Notice of Non-Retaliation",
+      "category": "non-economic",
+      "status": "in-negotiation",
+      "statusLabel": "In negotiation · NEW",
+      "unionAsks": "New article introduced 5/14/2026. Codifies advance notice of non-retaliation as a separate protection. Detailed proposal language not yet public.",
+      "harvardPosition": "No response yet."
+    }
+  ],
+
+  "sessions": [
+    {
+      "date": "2026-05-14",
+      "title": "Latest session",
+      "tldr": "Harvard countered on Compensation; Union countered back. Union withdrew Workload. Major package proposals from both sides covering most articles.",
+      "summary": "Most active session in months. Both sides exchanged comprehensive package proposals. Compensation saw real movement, though still inadequate. Union withdrew Article 16 (Workload) as a strategic concession. Awaiting bargaining committee debrief.",
+      "articleRefs": ["20", "16", "3", "4", "5", "6", "9", "10", "11", "18", "19", "21", "24", "33", "AF", "AT", "NR", "FA", "2"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2026-04-28",
+      "title": "First Session After Strike",
+      "tldr": "Harvard proposed raises below inflation and no more benefit funds, but finally some movement at the table. Union reasserted proposals for an independent grievance procedure.",
+      "summary": "First bargaining session after the strike began (4/21). Harvard proposed eliminating union-administered benefit funds entirely, replacing them with a University-administered program. Approximately 1,000 workers would be excluded from the new structure: hourly workers, many Master's students, and DDes, EdLD, DrPH, and SJD candidates. Childcare fund proposed at $6,500/year (vs. previous $16,000) — less than two months of Harvard's own childcare costs. Harvard moved slightly on compensation but kept the raise below inflation; called the 1% increase 'generous' as it would cost $1 million (less than 0.01% of the $10.2B flexible endowment). Proposed MetLife legal services plan does NOT cover urgent immigration representation. Next sessions: 5/14, 5/28, 6/9, 6/23.",
+      "articleRefs": ["20", "21", "22", "23", "24", "30", "13", "7", "FA"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Harvard's own childcare facility cost", "url": "https://campuschildcareinc.org/hyccc/"},
+        {"title": "MetLife legal plan flyer", "url": "https://hr.harvard.edu/sites/g/files/omnuum6281/files/2025-02/metlife_legal_plans_flyer.pdf"},
+        {"title": "Boston CPI", "url": "https://www.bls.gov/regions/northeast/news-release/2025/consumerpriceindex_boston_20250812.htm"},
+        {"title": "Harvard annual report (endowment)", "url": "https://finance.harvard.edu/annual-report"}
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "title": "Update under strike threat (covers 4/9 + 4/13)",
+      "tldr": "Most movement seen in over a year of bargaining. Article 27 (Holidays) TA'd. Harvard still refuses on core protections. Key fights ongoing on discipline, retaliation, harassment, health and safety.",
+      "summary": "Back-to-back sessions on April 9 and 13 after the strike authorization vote (95.8% authorization from 2,052 workers). Article 27 (Holidays) reached tentative agreement on 4/9 — second TA of the cycle. Movement on appointment letters and partial movement on grievance procedure. No real engagement on compensation, benefits, or protections for marginalized workers. Harvard proposed a weaker discipline process without investigation. New asks on health and safety, appointment security, union rights, academic freedom, workload, and AI.",
+      "articleRefs": ["27", "19", "3", "6", "7", "8", "10", "4", "18", "AF", "16"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Article 27 TA document", "url": "https://drive.google.com/file/d/18hrAyZCJXuPDomNbQU6TAnkgE55heBJp/view"},
+        {"title": "Union discipline proposal", "url": "https://docs.google.com/document/d/1b7CxjXtswm5j3rfW8kP4ucBDOak4jDJ_/edit"}
+      ]
+    },
+    {
+      "date": "2026-03-26",
+      "title": "Session #21: No Money, No ICE Protections, and No Protections against Harassment & Discrimination",
+      "tldr": "21 sessions in, 62 hours at the table. Harvard reasserted positions on multiple articles, asked union to withdraw proposals, called a living wage 'unreasonable.'",
+      "summary": "Harvard handed back copies of union's own proposals without responding (Articles 9, 10, 13, 18). Called living wage 'unreasonable' even as RAs/TFs at peer institutions make much more. For G5+ humanities/social sciences TFs making $26K, Harvard considered their finances a 'financial aid issue' and refused to bargain over it. Told TFs to 'look into getting jobs in the summer' and work 4-5 sections. Said ICE protections would interfere with their 'relationship with the federal government,' despite UC offering these provisions for nearly a decade. Refused to engage with harassment proposals after hearing from 4 survivors at the prior session.",
+      "articleRefs": ["20", "13", "7", "9", "10", "18"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "UC ICE protection provisions", "url": "https://drive.google.com/file/d/1rV9QZc5qfHSi6Z2acWgH6SkGPhVHPx28/view"}
+      ]
+    },
+    {
+      "date": "2026-03-10",
+      "title": "Session #20: How much does a TF cost?",
+      "tldr": "Heard a dozen+ membership testimonies. Harvard rejected pay equity between TFs and RAs, refused to counter on non-citizen rights despite promising to (9 months overdue), passed token articles on Training and Job Posting.",
+      "summary": "Harvard offered below-inflation raises (2.5%/year over 4 years). Refused TF-RA pay equity. Under their proposal, TFs in 2029 would still qualify for SNAP. When pressed on TF wages, said 'no other contract has a 74% raise' and that 'this Union has agreed to the current pay structure before.' On non-citizen worker rights, failed to bring promised counter (9 months waiting). University moving to court to stop arbitration on the lab carve-out (would exclude thousands of workers).",
+      "articleRefs": ["20", "13", "33", "11", "5"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Peer institution pay comparison", "url": "https://docs.google.com/document/d/1wrf3RsBx7L76v4Dbfv9Oyiv1v9rqi7OXCuUjYPoNXoQ/edit"},
+        {"title": "Compensation testimony video", "url": "https://drive.google.com/file/d/1i4nAmxUYGoK_h1BETCzbxGtfBWILoBJp/view"}
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "title": "Session #19: Everything's on the Table",
+      "tldr": "ALL union proposals now on the table including economic demands. $55K base wage proposal. Expanded benefit funds. New articles on Lab Transition Program and Accessible Transit.",
+      "summary": "Major package: $55K base wage, $25/hour floor, 5%-or-inflation COLA, TF-RA pay equity. Full dental coverage. Expanded funds for childcare ($16K), healthcare, emergencies, legal expenses, non-citizen worker assistance. New Transitional Support Program for RAs leaving unsafe advising relationships (modeled on MIT). New Accessible Transit proposal. Reasserted Real Recourse on harassment/discrimination. Total benefit funds expansion from $2.75M to $3.6M.",
+      "articleRefs": ["20", "21", "22", "23", "24", "30", "7", "LTP", "AT", "BFR", "BT", "FA"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Compensation proposal", "url": "https://docs.google.com/document/d/107iNYI5diuFgtT5tflxYS5O0-MQd199R1MKwaO3EVcI/edit"},
+        {"title": "Childcare proposal", "url": "https://docs.google.com/document/d/1huUSrMVX2zyd6qc_ktbc-ho05mmqPbWz4sOkxlxX5fs/edit"},
+        {"title": "Healthcare proposal", "url": "https://docs.google.com/document/d/1qXJwvHiTzaddFkhhg8Kfr3vfJ-MPOky_TTGoGYHp9Qk/edit"},
+        {"title": "Legal Expense Fund proposal", "url": "https://docs.google.com/document/d/1IxFmC1W9WUqRKh67q_gsWtJuyf-AdkhsDBFNk2bO0h8/edit"},
+        {"title": "Emergency Grant proposal", "url": "https://docs.google.com/document/d/1sZ4rkSfgjOQYxMv8J4haexQghwphMebRpUWr3ixmUlk/edit"},
+        {"title": "Non-citizen assistance proposal", "url": "https://docs.google.com/document/d/18-ZDDlyY90CTlRQlk117Ny7P-WbZLBtyO9FmG0RROGI/edit"},
+        {"title": "Transitional Support proposal", "url": "https://docs.google.com/document/d/1n2oOR82rUlayK2ROyCoAzQuG2QJO7LGMc4KcJ9F2kWI/edit"},
+        {"title": "Accessible Transit proposal", "url": "https://docs.google.com/document/d/1Gz4xbBdR65EqawhBZH_KHqH1Z1z552BH81C6GKS9HVk/edit"},
+        {"title": "Real Recourse proposal", "url": "https://docs.google.com/document/d/1R_-CV_Is0LoIFtpICdPs4UFWjejHZxijXYD45GccUPM/edit"}
+      ]
+    },
+    {
+      "date": "2026-02-02",
+      "title": "Session #18: First TA Won",
+      "tldr": "Article 15 (Workspace) TA'd — first TA of the cycle. Harvard still ghosting on non-citizen protections (242 days). Health & Safety counter. Appointment letter counter dodges late-pay accountability.",
+      "summary": "First TA: Workspace and Materials. 'Reasonable' clarified as generally under a 10-minute walk and on the same campus. Non-citizen rights: 8+ months without counter from Harvard, who admits they've been discussing it behind closed doors but have nothing in writing. Health & Safety counter pushed for clearer accommodation timelines and safer wellness-check protocols (no defaulting to police). Harvard's appointment-letter counter added 'taxable income' language but didn't fix late-pay problem. Grievance: union moved to 45 business days (still longer than current contract); Harvard resisting anti-retaliation protections.",
+      "articleRefs": ["15", "13", "10", "3", "6"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Article 15 TA document", "url": "https://docs.google.com/document/d/1Pcjc1pSTZ4P6ZrlFl6hWFP4wcudDklOV/edit"},
+        {"title": "Article 13 union proposal", "url": "https://drive.google.com/file/d/1zvFq57tyI4cIJuEPUm3p8RN3NFxHmkAL/view"},
+        {"title": "Health & Safety counter", "url": "https://drive.google.com/file/d/1I3KJ_65l8WFQHv4Xi6wuKTnUBmCCsmRX/view"},
+        {"title": "Grievance counter", "url": "https://drive.google.com/file/d/14v0CtjK9E5IgtSqvq27SLwg5CHC6hh5j/view"}
+      ]
+    },
+    {
+      "date": "2025-12-04",
+      "title": "Session #16: Slow but Steady",
+      "tldr": "Counters received on employment letters, workspace access, and grievance/arbitration. Harvard cut grievance timeline from 80 business days to 35; refused codified privacy protections. Productive conversation on harassment protections but Harvard insists on limiting workers to internal-only process.",
+      "summary": "Continued pushing on late appointment letters and timely paychecks. Harvard adopted union's private-space proposal but with unclear accessibility language. Grievance: 80-day proposal cut to 35. Privacy protections for grievance filers refused. On harassment, union proposed multiple flexible options for redress (union grievance + internal process); Harvard insists on internal-only. 11 of 16 articles still without counter, including non-citizen rights, academic freedom, holidays, leaves.",
+      "articleRefs": ["3", "15", "6", "7"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-11-21",
+      "title": "Session #15: Membership reminds Harvard of our priorities",
+      "tldr": "After 12 rejections at the prior session, BC delivered 10 counters in rapid succession. Productive conversation on academic retaliation. Harvard added 'or retaliation' language to Article 7.",
+      "summary": "After Harvard's 12 rejections on 11/7, the bargaining committee turned around 10 counters by 11/21. Pushed for: security pay beyond guaranteed teaching, right to inquire into funding source, healthcare during leaves, academic freedom, paid vacation. Harvard surprised by turnaround. Their counter on Article 7 (Non-Discrimination) added the phrase 'or retaliation' in places — a small but optimistic signal that they recognize retaliation can't be addressed by 'Harvard ethos' alone.",
+      "articleRefs": ["4", "21", "AF", "27", "7"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-11-07",
+      "title": "Session #14: Getting access to health care is too radical for Harvard",
+      "tldr": "Sat down with Harvard CFO for finance overview. Despite 11.9% gain on $56.9B endowment, no plans to address hiring freezes, layoffs, stagnant wages. Harvard rejected 12 of our proposed articles outright.",
+      "summary": "Harvard's CFO emphasized long-term endowment growth as the priority. Harvard rejected 12 articles wholesale, citing that the current contract is 'good enough.' What got rejected: paid family/medical leave (up to 12 weeks), healthcare during leaves, more than one personal day per semester, full compensation for canceled RA/TF appointments, real recourse for harassment/discrimination/bullying/academic retaliation, any academic freedom protections.",
+      "articleRefs": ["26", "21", "27", "4", "7", "8", "AF"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Harvard FY25 financial report", "url": "https://finance.harvard.edu/sites/g/files/omnuum12671/files/2025-10/fy25-financial-report.pdf"},
+        {"title": "FAS PhD admission cuts coverage", "url": "https://www.thecrimson.com/article/2025/10/21/fas-phd-admissions-cuts/"}
+      ]
+    },
+    {
+      "date": "2025-10-23",
+      "title": "Session #13: We're still waiting",
+      "tldr": "Harvard invited their Disability Resources director for an overview, but couldn't provide data on denied accommodations. Union pushed on grievance timeline (one semester) and ungraded 'placeholder' credits during leaves.",
+      "summary": "Kate Upatham (Harvard's Senior Director of Disability Resources) briefed the union on the accommodations process but said data on denied requests was 'not readily available.' Union counter on grievance pushed for ~one-semester timeline; Harvard offered only 5 extra days (35 total) and refused to codify acceptance of late grievances. On leaves: union asked for retained student status, campus access, healthcare during leaves; Harvard rejected placeholder credits, claiming they would 'reward' students not making academic progress. Demanded vacation time for TFs (one day/month proposal); Harvard dismissed it as TFs' schedules already 'flexible enough.' 100+ workers rallied alongside HAW, HUCTW, and 32BJ after the session.",
+      "articleRefs": ["6", "26", "27", "10"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Grievance counter", "url": "https://docs.google.com/document/d/1MzExRvajwG6dcM89LwyvRC2Kw-uQECPr/edit"},
+        {"title": "Leaves proposal", "url": "https://docs.google.com/document/d/1SL4DOrjz00zzYcII80lZZN4qPRDAizV4/edit"},
+        {"title": "Vacation proposal", "url": "https://drive.google.com/file/d/1jYmOaKQ6okMkLFsatjjBcz9rvomBXIbL/view"}
+      ]
+    },
+    {
+      "date": "2025-09-25",
+      "title": "Session #12: Fruitful conversation, but still waiting for counters",
+      "tldr": "Productive on grievance timeline (80 days), retaliation protections, union security. Harvard dismissed retaliation definition as 'too broad' and 'outside their control.' 16 articles brought; only 6 counters received.",
+      "summary": "Union pushed grievance filing timeline from 30 to 90 business days (a semester). Harvard claimed extended timelines weren't 'standard' for other unions despite counterexamples. Pushed for codified privacy and anti-retaliation protections. Harvard rejected union's retaliation definition as 'too broad' but said the University's 'ethos' is already non-retaliatory. Counter-proposed agency-shop. Harvard asked questions on workload, workspace, leaves, health & safety. Union underscored: timely accommodations for disabled workers, healthcare during leaves, protection from involuntary police entry, dedicated desk space.",
+      "articleRefs": ["6", "33", "16", "15", "26", "10"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Grievance proposal", "url": "https://drive.google.com/file/d/1sEL7WnG4yxgSJTQ_Rt0SmISkbcFbE1tw/view"},
+        {"title": "Retaliation definition", "url": "https://drive.google.com/file/d/1PUn4Hhip8QRp43_7y4KWH3nMjYwlev_K/view"},
+        {"title": "Agency shop proposal", "url": "https://drive.google.com/file/d/1zhPIaxwRravUaT3O0sxzAG_rtG0Ehjzu/view"}
+      ]
+    },
+    {
+      "date": "2025-09-11",
+      "title": "Session #11: We demand protection from academic retaliation",
+      "tldr": "Director of new CSNDR briefed on Title IX. Harvard dodged real engagement on harassment/discrimination protections. Discussion got heated on union security; Harvard dismissed HUCTW comparison.",
+      "summary": "Nicole Merhill (Director of CSNDR) outlined Title IX policies. Harvard dodged questions on grievability for discrimination cases. Union continued pushing employment security (full pay for canceled sections, 2 weeks notice) and academic retaliation protections. Heated discussion on Union Security: Harvard dismissed the HUCTW agency-shop comparison, saying graduate workers are 'different' because they enter as students. 16 articles brought; only 6 counters returned.",
+      "articleRefs": ["7", "4", "8", "33"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Employment security proposal", "url": "https://drive.google.com/file/d/1nnBTzmCNxtkrIWmmp9Uc3yqYcwtTSsyA/view"},
+        {"title": "Academic retaliation proposal", "url": "https://drive.google.com/file/d/1PUn4Hhip8QRp43_7y4KWH3nMjYwlev_K/view"}
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "title": "Sessions #9 & #10 (double feature): The Big One",
+      "tldr": "Harvard's carve-out scheme for ~1000 lab-science RAs. Union passed six major articles including the new Academic Freedom proposal. Harvard had nothing to pass — 'lots of work to do.'",
+      "summary": "Covers 7/11 and 8/21 sessions. On 7/11: union rejected Harvard's scheme to carve out ~1000 lab-science RAs from the unit. Harvard refused to discuss at the table, claiming not a 'mandatory subject of bargaining.' Counter on Appointment Letters. Harvard questioned why academic retaliation needs a non-University process. On 8/21: union passed articles on Articles 7 (Non-Discrimination), 9 (IP), 10 (Health & Safety), 19 (Discipline), 26 (Leaves), and new Academic Freedom article. Harvard had updates only — would invite CFO and CSNDR director to future sessions. 14 of 16 articles passed since March remain in Harvard's court.",
+      "articleRefs": ["7", "9", "10", "19", "26", "AF", "3", "8"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-06-27",
+      "title": "Session #8: We push for agency shop, real recourse!",
+      "tldr": "Union proposed agency-shop for stronger union finances. Harvard refused to discuss Real Recourse, called the topic 'too contentious.' Harvard failed to offer guidance on non-citizens stranded abroad after visa revocations.",
+      "summary": "Proposed Article 33 (Union Security) for agency-shop arrangement — standard for most graduate unions in US. Received Harvard counter on appointment letters. Harvard resisted clarifying questions about their proposed cuts to harassment/discrimination and IP protections, and refused to discuss Real Recourse as 'contentious.' On non-citizens: Harvard offered no guidance for workers stranded abroad after visa revocations and told the bargaining team they were 'being unfair' for asking.",
+      "articleRefs": ["33", "7", "9", "13", "3"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-06-12",
+      "title": "Session #7: Harvard ignores Real Recourse / Non-Discrimination and Employment Security",
+      "tldr": "Harvard's lead negotiator delivered a 'State of the University' on financial instability. Counter-proposed on Article 7 (Non-Discrimination) that ERODED protections from current contract. Article 27 (Holidays) proposal.",
+      "summary": "Lead negotiator emphasized Harvard's financial instability, noting Garber's 25% pay cut. Won't explicitly confirm honoring 'guaranteed' funding packages. Counter on Employment Security accused union of doing 'a disservice' to prior bargaining. Counter on Non-Discrimination DEFERS most protections to University-wide policy 'amendable at Harvard's will at any time' — axed explicit language protecting race, color, religion, caste, creed, sex, sexual orientation, and more. Reneged on previously agreed contract language. Union proposed Article 27 (Holidays): Spring Break leave, mandatory notice of personal time, expanded eligibility for hourly workers.",
+      "articleRefs": ["7", "4", "27"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Harvard's Non-Discrimination counter", "url": "https://drive.google.com/file/d/1jebZvC2NKNXZQLdjDD6_OEkzaTRcqrCK/view"},
+        {"title": "Harvard's Appointment Security counter", "url": "https://drive.google.com/file/d/1nvzSkujjsmGHwRHP46yv1oOAblqIX9bG/view"},
+        {"title": "Real Recourse proposal", "url": "https://drive.google.com/file/d/1eKF5igS95xYFm5Q5xkf8dwvyYFFCzd0G/view"}
+      ]
+    },
+    {
+      "date": "2025-06-05",
+      "title": "Session #6: Harvard Owes us $400k in Legal Funds, Demands 'Please Say Thank You'",
+      "tldr": "Powerful testimonies from non-citizen workers under constant threat. Harvard's lead negotiator yelled at the team about not being 'thankful,' had to be intervened on by a Provost. Refused to release $400K owed in legal funds.",
+      "summary": "Non-citizen workers testified about constant threat of abduction from labs, classrooms, homes; fear of returning to hostile countries; need for legal counsel costing $40K+. Union has been unable to access $400K in legal funds Harvard has refused to properly release from the previous contract. Lead negotiator accused team of not being 'thankful' for Harvard's anti-Trump legal efforts, accused a BC member of 'whitewashing,' yelled to the point a University Provost had to intervene. Refused to engage with legal fund issue, calling it 'not relevant' to current negotiations. Union presented Article 13 (Non-Citizen Rights) with comprehensive legal assistance ask, expanded leave/remote work for immigration proceedings, protections against federal presence on campus. Harvard cut off testimony presentations. Union presented Article 18 (Union Access).",
+      "articleRefs": ["13", "18", "24"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": [
+        {"title": "Non-citizen testimonies", "url": "https://docs.google.com/document/d/1dOPdv9FPGVJw3eIgFejPE2FA3p_OMDNidsFRLLaXxMA/edit"},
+        {"title": "Article 13 proposal", "url": "https://drive.google.com/file/d/1zvFq57tyI4cIJuEPUm3p8RN3NFxHmkAL/view"},
+        {"title": "Article 18 proposal", "url": "https://drive.google.com/file/d/1BV4m1L1OxtUQbo253cbBqg-a5TY0PTMH/view"}
+      ]
+    },
+    {
+      "date": "2025-05-15",
+      "title": "Session #5: Legal defense fund, Workload, and Harvard's many questions",
+      "tldr": "Harvard again refused Zoom bargaining. Didn't fully address non-citizen protections or recent funding cuts. Extensive procedural questions on grievance and appointment letters. Union proposed Article 16 (Workload).",
+      "summary": "Harvard rejected accessibility-driven Zoom option (many workers out of town for summer). Followed up on legal defense fund and HRI understaffing. Harvard couldn't say how grad positions would be affected by federal funding cuts. Procedural questions on grievance: Harvard claimed extended filing timelines aren't 'standard,' expressed concern students could 'forget details.' On appointment letters: Harvard expressed confusion about info workers need on tax withholding, called timely letters with department/tax/funding info 'cumbersome and onerous,' blamed individual departments for delays. Union proposed Article 16 (Workload) addressing unpaid teaching labor.",
+      "articleRefs": ["16", "13", "24", "6", "3"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-05-01",
+      "title": "Session #4: Real recourse, funding cuts, and non-citizen safety",
+      "tldr": "Three articles proposed: Employment Security, Non-Discrimination/Harassment/Abuse, and Academic Retaliation. Harvard had no immediate answers on funding cuts, DHS information sharing, or ICE presence on campus.",
+      "summary": "Harvard had zero immediate answers on student worker funding security amid federal cuts, what info they share with DHS for SEVP compliance, or ICE presence on campus. Union proposed Articles 4 (Employment Security), 7 (Non-Discrimination/Harassment with 'Real Recourse'), 8 (Academic Retaliation). Harvard pushed back, asserting ~10% complaint dismissal rate is 'negligible' and didn't acknowledge time-restricted, arbitrary dismissal practices.",
+      "articleRefs": ["4", "7", "8", "13"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-04-10",
+      "title": "Session #3: Our first contract proposals & Bargaining Portal is up!",
+      "tldr": "First contract proposals brought: Articles 3 (Appointment Letters), 6 (Grievance & Arbitration), 15 (Workspace). Harvard passed Article 9 (Intellectual Property).",
+      "summary": "Productive session despite no ground rules. Union presented Articles 3, 6, 15. Harvard's Bargaining Team passed Article 9 (IP, Scholarly and Research Misconduct). Each team asked clarifying questions.",
+      "articleRefs": ["3", "6", "15", "9"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-03-28",
+      "title": "Session #2: Harvard Refuses Open Bargaining and Denies Protections Against ICE",
+      "tldr": "Harvard rejected open bargaining proposals (despite 1200+ signature petition). Denied ICE/DHS protections during bargaining sessions. Union will bargain without ground rules.",
+      "summary": "Delivered open-bargaining petition with 1200+ signatures. Harvard rejected open bargaining again, proposed compromise of muted Zoom webinar — also rejected. Specifically objected to 'our unit' observing negotiations. Refused to notify HGSU of ICE presence or enforce key-card access. Lead negotiator cut off bargaining committee member explaining safety concerns, saying 'You've talked an awful lot.' Directed union to inadequate Office of General Counsel guidelines. Union moves forward bargaining without ground rules.",
+      "articleRefs": ["X", "13"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    },
+    {
+      "date": "2025-03-17",
+      "title": "Session #1: Harvard Rejects Open Bargaining",
+      "tldr": "First bargaining session. University rejected open bargaining, safety/accessibility, and reasonable accommodations proposals, except for one specific disability accommodation.",
+      "summary": "Harvard rejected open bargaining (claimed observers would 'pressure them,' that 2021 open bargaining had a 'chilling effect'). Refused to provide details or counter-proposal. Accepted one specific disability accommodation needed for BC participation. Union drafted and sent counter-proposal within an hour reasserting open bargaining and ICE protections.",
+      "articleRefs": ["X"],
+      "debriefUrl": "https://harvardgradunion.org/bargaining-updates/",
+      "links": []
+    }
+  ]
+}
