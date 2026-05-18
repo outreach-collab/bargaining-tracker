@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HGSU 2026 Bargaining Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #f4f1ea;
+    --bg-card: #ffffff;
+    --bg-soft: #faf8f3;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-light: #888;
+    --rule: #d6d0c4;
+    --rule-soft: #e8e3d8;
+    --union: #1e3a5f;
+    --union-soft: #d3dde8;
+    --harvard: #8b3a3a;
+    --harvard-soft: #ebd5d3;
+    --ta: #3d6b3a;
+    --ta-soft: #d4e0d2;
+    --withdrawn: #888;
+    --withdrawn-soft: #e0e0e0;
+    --accent: #b58923;
+    --serif: 'Newsreader', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* ===== Header ===== */
+header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+.title em {
+    font-style: italic;
+    color: var(--harvard);
+}
+
+.subtitle {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+}
+
+.stats-bar {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule-soft);
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.stat-num {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ink);
+}
+
+.stat-num.union { color: var(--union); }
+.stat-num.ta { color: var(--ta); }
+.stat-num.harvard { color: var(--harvard); }
+
+.stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+}
+
+/* ===== Filter bar ===== */
+.filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.55rem 0.85rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+}
+
+.search-input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+}
+
+.filter-group {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--rule);
+    background: var(--bg-card);
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    padding: 0.55rem 0.85rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-right: 1px solid var(--rule-soft);
+}
+
+.filter-btn:last-child { border-right: none; }
+.filter-btn:hover { background: var(--bg-soft); color: var(--ink); }
+.filter-btn.active {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+/* ===== Two-column layout ===== */
+.dashboard {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    position: sticky;
+    top: 1rem;
+}
+
+.sidebar-header {
+    padding: 0.85rem 1rem;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.article-list {
+    list-style: none;
+}
+
+.article-item {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--rule-soft);
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.article-item:hover:not(.active) {
+    background: var(--bg-soft);
+}
+
+.article-item.active {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.article-item-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+}
+
+.article-item.active .article-item-num {
+    color: rgba(255,255,255,0.7);
+}
+
+.article-item-name {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    margin-bottom: 0.35rem;
+}
+
+.article-item-meta {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.article-item.active .article-item-meta {
+    color: rgba(255,255,255,0.6);
+}
+
+.status-pill {
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    background: var(--rule-soft);
+    color: var(--ink-soft);
+    font-weight: 500;
+}
+
+.status-pill.ta { background: var(--ta-soft); color: var(--ta); }
+.status-pill.withdrawn { background: var(--withdrawn-soft); color: var(--withdrawn); }
+.status-pill.economic { background: #fae8c3; color: #856015; }
+
+.article-item.active .status-pill {
+    background: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.9);
+}
+
+/* ===== Detail panel ===== */
+.detail {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 2rem 2.25rem;
+    min-height: 400px;
+}
+
+.detail-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+}
+
+.detail-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+}
+
+.detail-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.detail-meta .status-pill {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ===== Comparison block ===== */
+.comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.comparison-col {
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    background: var(--bg-soft);
+}
+
+.comparison-col.union { border-top: 4px solid var(--union); }
+.comparison-col.harvard { border-top: 4px solid var(--harvard); }
+
+.comparison-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.comparison-col.union .comparison-label { color: var(--union); }
+.comparison-col.harvard .comparison-label { color: var(--harvard); }
+
+.comparison-content {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+.comparison-content p {
+    margin-bottom: 0.6rem;
+}
+
+.comparison-content p:last-child { margin-bottom: 0; }
+
+.comparison-content em {
+    font-style: italic;
+    color: var(--ink);
+}
+
+.comparison-content strong {
+    font-weight: 600;
+}
+
+/* ===== Timeline ===== */
+.timeline-section {
+    margin-top: 2rem;
+}
+
+.section-heading {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-heading::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--ink);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.45rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: var(--rule);
+}
+
+.event {
+    position: relative;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule-soft);
+}
+
+.event:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.event::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.4rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--ink);
+    z-index: 1;
+}
+
+.event.union::before { border-color: var(--union); background: var(--union); }
+.event.harvard::before { border-color: var(--harvard); background: var(--harvard); }
+.event.ta::before { border-color: var(--ta); background: var(--ta); }
+.event.withdrawn::before { border-color: var(--withdrawn); background: var(--withdrawn); }
+.event.context::before { background: var(--bg-card); border-color: var(--ink-light); }
+
+.event-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.45rem;
+}
+
+.event-date {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.event-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    border-radius: 2px;
+}
+
+.event-tag.union { background: var(--union-soft); color: var(--union); }
+.event-tag.harvard { background: var(--harvard-soft); color: var(--harvard); }
+.event-tag.ta { background: var(--ta-soft); color: var(--ta); }
+.event-tag.withdrawn { background: var(--withdrawn-soft); color: var(--withdrawn); }
+.event-tag.context { background: var(--rule-soft); color: var(--ink-soft); }
+
+.event-content {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+}
+
+.event-content strong {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.event-content em {
+    font-style: italic;
+}
+
+/* ===== Empty state ===== */
+.empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-light);
+}
+
+.empty-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink-soft);
+}
+
+.empty-text {
+    font-size: 0.9rem;
+    max-width: 40ch;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ===== Footer ===== */
+.footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    text-align: center;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.footer a {
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer a:hover { color: var(--ink); }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        max-height: 320px;
+        position: relative;
+        top: auto;
+    }
+    .comparison {
+        grid-template-columns: 1fr;
+    }
+    .detail {
+        padding: 1.5rem 1.25rem;
+    }
+    .page {
+        padding: 1.25rem;
+    }
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar { width: 8px; }
+.sidebar::-webkit-scrollbar-track { background: var(--bg); }
+.sidebar::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--ink-light); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+    <div class="title-row">
+        <h1 class="title">HGSU 2026 <em>Bargaining</em> Tracker</h1>
+        <div class="subtitle">Local 5118 · Updated 5/14/26</div>
+    </div>
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-num" id="totalCount">—</div>
+            <div class="stat-label">Articles in negotiation</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num ta" id="taCount">—</div>
+            <div class="stat-label">Tentative agreements</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num union" id="unionMovesCount">—</div>
+            <div class="stat-label">Union moves on 5/14</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num harvard" id="harvardMovesCount">—</div>
+            <div class="stat-label">Harvard moves on 5/14</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Months at the table</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">28</div>
+            <div class="stat-label">Days on strike</div>
+        </div>
+    </div>
+</header>
+
+<div class="filter-bar">
+    <input type="search" class="search-input" id="searchInput" placeholder="Search articles by name or topic...">
+    <div class="filter-group" id="categoryFilter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="economic">Economic</button>
+        <button class="filter-btn" data-filter="non-economic">Non-economic</button>
+        <button class="filter-btn" data-filter="ta">TA'd</button>
+    </div>
+</div>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="sidebar-header">Articles</div>
+        <ul class="article-list" id="articleList"></ul>
+    </aside>
+    <main class="detail" id="detail"></main>
+</div>
+
+<div class="footer">
+    Sources: HGSU bargaining-updates page, bargaining committee debriefs, Harvard Crimson coverage. ·
+    For the official tracker: <a href="https://harvardgradunion.org/bargaining-updates/" target="_blank">harvardgradunion.org/bargaining-updates</a>
+</div>
+
+</div>
+
+<script>
+'use strict';
+
+// ============================================================
+// Data
+// ============================================================
+
+const articles = [
+    // ===== Procedural =====
+    {
+        id: 'X',
+        name: 'Ground Rules',
+        category: 'non-economic',
+        status: 'no-agreement',
+        statusLabel: 'No agreement',
+        unionAsks: '<p>Open bargaining — members allowed to observe sessions silently, both in person and over Zoom. Disability accessibility accommodations. Enforceable protections from ICE/DHS during sessions: key-card access to the room, advance notification if federal agents arrive on campus.</p>',
+        harvardPosition: '<p>Rejected open bargaining repeatedly. Argued observers would "pressure" the team and create a "chilling effect." Refused to lock the bargaining room door or commit to ICE protections; directed the union to existing Office of General Counsel guidelines that do not materially protect against detention. Accepted one specific disability accommodation.</p>',
+        events: [
+            { date: '2/26/2025', actor: 'harvard', label: 'Harvard proposal', text: 'Harvard\'s initial ground rules proposal.' },
+            { date: '3/14/2025', actor: 'union', label: 'Union counter', text: 'Union proposed open bargaining and ICE/DHS protections during sessions.' },
+            { date: '3/20/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard rejected open bargaining and protections from law enforcement.' },
+            { date: '3/28/2025', actor: 'union', label: 'Union counter', text: 'Union compromised — proposed observers only on a muted Zoom webinar. Harvard rejected every transparency proposal and refused to verbally commit to any ICE-related safety measures. Both sides are now <strong>operating without ground rules</strong>.' },
+            { date: '3/28/2025', actor: 'context', label: 'Status', text: 'Bargaining proceeds with no agreed-upon code of conduct. The union has continued to push for transparency through external organizing.' },
+        ]
+    },
+
+    // ===== Employment terms =====
+    {
+        id: '3',
+        name: 'Employment Appointment Letter',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Timely appointment letters that include basic info workers need — department/program, tax rate, funding source — so people aren\'t left without paychecks when admin systems lag. Accountability when letters arrive late, and clarity around tax withholding.</p>',
+        harvardPosition: '<p>Added a line that pay is "taxable income" but refused to fix the late-letter problem. Called the union\'s information requirements "cumbersome and onerous." Blames individual departments and programs for delays rather than committing to systemic accountability.</p>',
+        events: [
+            { date: '4/10/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: timely appointment letters with department/program, tax rate, and funding source. One of the union\'s first three proposals of the cycle.' },
+            { date: '5/15/2025', actor: 'harvard', label: 'Harvard questions', text: 'Harvard expressed "confusion" about what info workers need. Called commitments to send letters on time "cumbersome and onerous."' },
+            { date: '6/27/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter on appointment letters, but did not address late-letter problem.' },
+            { date: '7/11/2025', actor: 'union', label: 'Union counter', text: 'Union pushed back on Harvard\'s framing.' },
+            { date: '10/23/2025', actor: 'harvard', label: 'Harvard counter', text: 'Added taxable-income language but did not address late pay.' },
+            { date: '11/7/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '11/21/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter.' },
+            { date: '12/4/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '12/18/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter.' },
+            { date: '2/2/2026', actor: 'context', label: 'Counter passed', text: 'Harvard\'s counter on this article added "taxable income" language but didn\'t fix the real problem — late appointment letters and late pay.' },
+            { date: '3/10/2026', actor: 'harvard', label: 'Reassertion', text: 'Harvard reasserted their 2/2/26 position.' },
+            { date: '4/9/2026', actor: 'harvard', label: 'University counter', text: 'New counter.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter. Harvard also countered the same session.' },
+            { date: '4/20/2026', actor: 'union', label: 'Union counter', text: 'Union counter; Harvard also countered.' },
+            { date: '5/14/2026', actor: 'harvard', label: 'Package', text: 'Article 3 included in Harvard\'s full-contract package proposal.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Article 3 included in the union\'s selected-articles package.' },
+        ]
+    },
+
+    {
+        id: '4',
+        name: 'Employment Appointment Security',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Full pay for TFs whose sections are canceled. At least two weeks\' notice if that happens. Protections for RAs whose appointments are cut or canceled. As of February 2026, this article also absorbed the <strong>Lab Transition Program</strong>: six months of guaranteed funding, tuition, healthcare, and benefits for RAs leaving unsafe, abusive, or broken advising relationships — modeled on MIT\'s Guaranteed Transitional Support program.</p>',
+        harvardPosition: '<p>Argued that the union\'s appointment-security proposal "did a disservice to prior efforts" because the union disagreed with Harvard\'s reading of who is eligible for security pay. Has not engaged meaningfully with the lab transition program component.</p>',
+        events: [
+            { date: '5/1/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: full pay for canceled TF sections, two weeks notice, RA protections.' },
+            { date: '6/5/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard accused the union of doing a "disservice to prior efforts."' },
+            { date: '10/23/2025', actor: 'union', label: 'Union counter', text: 'Union counter on appointment security.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Reassertion', text: 'Harvard reasserted prior position rather than offering new movement.' },
+            { date: '2/9/2026', actor: 'context', label: 'Lab transition added', text: 'The Lab Transition Program was proposed separately. By 4/13/2026 it was folded into Article 4.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Updated counter, now including lab-transition language.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Article 4 included in union\'s selected-articles package.' },
+        ]
+    },
+
+    {
+        id: '5',
+        name: 'Job Posting',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Protections and agreements around job postings for in-unit positions — ensuring transparency about available work and fair access.</p>',
+        harvardPosition: '<p>Initial proposal from fall 2025. Limited public detail on the specific disputes.</p>',
+        events: [
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard proposal', text: 'Harvard\'s initial proposal on job posting.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Included in union\'s 5/14 package proposal.' },
+        ]
+    },
+
+    {
+        id: '6',
+        name: 'Grievance and Arbitration',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>A realistic timeline for filing grievances — initially 90 business days (roughly one semester), narrowed in negotiation to 45 business days. Codified privacy protections for workers who file grievances. Strong anti-retaliation language with a clear, usable definition of retaliation.</p>',
+        harvardPosition: '<p>Started at 30 days for filing, moved to 35 (an extra five days). Refused to codify acceptance of late grievances, claiming extensions could be granted on a case-by-case basis through "mutual agreement." Rejected the union\'s definition of retaliation as "too broad" and "outside their control." Resisted codifying privacy protections.</p>',
+        events: [
+            { date: '4/10/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: 90-business-day filing window, privacy protections, anti-retaliation language.' },
+            { date: '5/15/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard offered only 5 extra days (35 total) and refused to codify late-filing acceptance. Cited "mutual agreement" extensions instead.' },
+            { date: '9/25/2025', actor: 'context', label: 'Standoff continues', text: 'Union pushed extended timeline; Harvard claimed it wasn\'t "standard" elsewhere. Harvard dismissed union\'s retaliation definition.' },
+            { date: '10/23/2025', actor: 'union', label: 'Union counter', text: 'Union counter — adjusted to 45 business days, still longer than the previous contract.' },
+            { date: '11/21/2025', actor: 'harvard', label: 'Harvard counter', text: 'Limited movement; small concession on retaliation language ("or retaliation" added in places).' },
+            { date: '12/4/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '12/18/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter.' },
+            { date: '2/2/2026', actor: 'union', label: 'Union counter', text: 'Union counter — moved down to 45 business days to keep negotiations moving. Still pushing for stronger retaliation protections.' },
+            { date: '3/10/2026', actor: 'harvard', label: 'Reassertion', text: 'Harvard reasserted prior position.' },
+            { date: '4/9/2026', actor: 'union', label: 'Union counter', text: 'Union counter; Harvard also countered the same session.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '4/20/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Included in union\'s 5/14 package proposal.' },
+        ]
+    },
+
+    // ===== Discrimination, harassment, retaliation =====
+    {
+        id: '7',
+        name: 'Non-Discrimination, Harassment, and Abuse',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Codified identity-specific protections (race, color, religion, caste, creed, sex, sexual orientation, etc.) — the protections that exist in the current contract. "<strong>Real Recourse</strong>": access to the union grievance process as an option <em>in addition to</em> Harvard\'s internal process, so survivors can choose. Anti-retaliation language. The right to union representation in meetings.</p><p><em>~1 in 5 student workers</em> have experienced harassment, discrimination, or bullying in their workplace.</p>',
+        harvardPosition: '<p>Removed the identity-specific list from contract language and defers to University-wide policy that Harvard can amend at any time without union input. Refuses union grievance access — survivors get only the internal process Harvard fully controls. Initially stripped out the right to union representation in meetings (a right in the current contract). Added "or retaliation" phrasing in places as a minor concession. Cited that ~10% of complaints being dismissed is "negligible" and that the existing process works fine.</p>',
+        events: [
+            { date: '5/1/2025', actor: 'union', label: 'Union proposal', text: 'Initial "Real Recourse" proposal: codified identity protections, union grievance access, real choice for survivors.' },
+            { date: '6/12/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard\'s counter <strong>eroded protections from the previous contract</strong> — deferred to University policy that can be amended at any time, stripped identity-specific protections, eliminated the right to union representation in meetings. Refused to discuss Real Recourse as "too contentious."' },
+            { date: '9/11/2025', actor: 'context', label: 'CSNDR briefing', text: 'Harvard invited Nicole Merhill (Director of CSNDR) to brief the union on Title IX policies. When the union asked about access to grievability for discrimination cases and anti-retaliation, Harvard dodged questions.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard rejection', text: 'Harvard formally rejected the union\'s proposal.' },
+            { date: '11/21/2025', actor: 'harvard', label: 'Harvard counter', text: 'Added "or retaliation" phrasing in several places — a small but meaningful acknowledgment that retaliation needs to be addressed.' },
+            { date: '12/4/2025', actor: 'union', label: 'Union counter', text: 'Union counter — pushed for multiple, flexible options for seeking redress: union grievance, internal process, or both. Harvard insisted on limiting workers to only one process (their internal one).' },
+            { date: '2/2/2026', actor: 'harvard', label: 'Reassertion', text: 'Harvard reasserted 11/21 position.' },
+            { date: '4/20/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '4/28/2026', actor: 'context', label: 'First post-strike session', text: 'The union reasserted proposals for an independent grievance procedure that provides real recourse to workers facing harassment, discrimination, and bullying.' },
+            { date: '5/14/2026', actor: 'context', label: 'Status', text: 'Despite four weeks of strike action, Harvard\'s position remains substantively the same.' },
+        ]
+    },
+
+    {
+        id: '8',
+        name: 'Academic Retaliation',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Explicit protections against academic retaliation from faculty mentors and advisors — bad rec letters, denied professional opportunities, blocked academic progress. Other graduate union contracts protect against academic retaliation; Harvard\'s does not.</p>',
+        harvardPosition: '<p>Says current internal mechanisms are sufficient. Initially questioned why a neutral, non-University-run process is needed when Harvard has its own. Reasserted previous position 11/7/25. At one session, a Harvard rep asked how the union knows the current process isn\'t working given "very little use" — the union\'s response: reporting misconduct to a board of the accused\'s colleagues suppresses reporting.</p>',
+        events: [
+            { date: '5/1/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: protections against retaliation from advisors in rec letters, opportunities, and academic progress.' },
+            { date: '7/11/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard asked why a neutral process is needed when they have their own internal system.' },
+            { date: '9/11/2025', actor: 'union', label: 'Union counter', text: 'Union reasserted; pressed on academic retaliation specifically.' },
+            { date: '10/23/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard rejection', text: 'Harvard formally rejected the union\'s proposal.' },
+            { date: '11/21/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter — Harvard reasserted same session.' },
+            { date: '4/20/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+        ]
+    },
+
+    {
+        id: 'NR',
+        name: 'Notice of Non-Retaliation',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation · NEW',
+        unionAsks: '<p>New article introduced 5/14/2026 — codifying advance notice of non-retaliation as a separate protection. Detailed proposal language not yet public.</p>',
+        harvardPosition: '<p>No response yet.</p>',
+        events: [
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'New article introduced for the first time as part of the 5/14 union package.' },
+        ]
+    },
+
+    // ===== Intellectual property =====
+    {
+        id: '9',
+        name: 'Intellectual Property, Scholarly and Research Misconduct',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Student worker rights to intellectual property they produce, clear dispute resolution processes for research misconduct disputes.</p>',
+        harvardPosition: '<p>Proposed cuts to existing IP protections from the previous contract. Resisted union\'s clarifying questions.</p>',
+        events: [
+            { date: '4/10/2025', actor: 'harvard', label: 'Harvard proposal', text: 'Harvard\'s initial proposal — included cuts to existing IP protections.' },
+            { date: '5/15/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '6/12/2025', actor: 'context', label: 'Standoff', text: 'Harvard resisted clarifying questions about their proposed cuts to IP protections.' },
+            { date: '10/23/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter.' },
+            { date: '4/9/2026', actor: 'harvard', label: 'University counter', text: 'New university counter.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Included in union\'s 5/14 package proposal.' },
+        ]
+    },
+
+    {
+        id: 'AF',
+        name: 'Academic Freedom',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation · NEW',
+        unionAsks: '<p>Academic freedom protections on matters relevant to the subject and purpose of the worker\'s appointment. Other graduate union contracts include this; Harvard\'s does not.</p>',
+        harvardPosition: '<p>Rejected without offering a counter. Doesn\'t want real language on this issue, even though it directly affects student workers\' jobs.</p>',
+        events: [
+            { date: '5/1/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal of new article on academic freedom.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard rejection', text: 'Harvard rejected without counter.' },
+            { date: '12/4/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '4/9/2026', actor: 'harvard', label: 'Rejection', text: 'Harvard rejected again without offering a counter.' },
+            { date: '4/20/2026', actor: 'union', label: 'Union re-assertion', text: 'Union re-asserted proposal. Harvard still refusing to engage.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Included in union\'s 5/14 package proposal.' },
+        ]
+    },
+
+    // ===== Health and safety =====
+    {
+        id: '10',
+        name: 'Health and Safety',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Stronger and clearer timelines for disability accommodations. Safer approach to "wellness checks" that doesn\'t default to armed police response. Protection against involuntary police entry into non-public spaces where workers live and work. Real accountability around accommodations data.</p>',
+        harvardPosition: '<p>Says enforceable timelines would be "difficult." Has not provided requested data on denied accommodation requests or informal resolutions. Director of Disability Resources briefed the union but said the data the union requested wasn\'t "readily available."</p>',
+        events: [
+            { date: '5/1/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal on health and safety.' },
+            { date: '9/25/2025', actor: 'context', label: 'Standoff', text: 'Harvard said timelines for accommodations would be "difficult." Refused to release accommodations data.' },
+            { date: '10/23/2025', actor: 'context', label: 'Disability briefing', text: 'Harvard invited the Senior Director of Disability Resources to brief the union; she said the data on denied accommodations was not readily available.' },
+            { date: '11/21/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '12/4/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter.' },
+            { date: '2/2/2026', actor: 'union', label: 'Union counter', text: 'Union proposed stronger protections — clearer timelines for disability accommodations and safer "wellness check" approaches that don\'t default to police.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'Renewed proposal in 5/14 package.' },
+        ]
+    },
+
+    {
+        id: 'AT',
+        name: 'Accessible Transit',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation · NEW',
+        unionAsks: '<p>Guaranteed accessible transportation for student workers with disability accommodations via the Daytime Van Service. Expanded to both daytime and evening service across all Harvard campuses. Ride-share coverage when van wait times exceed 30 minutes.</p>',
+        harvardPosition: '<p>No real engagement yet.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'New article proposed: accessible transit for disabled student workers.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'Renewed in 5/14 package. Harvard still hasn\'t responded.' },
+        ]
+    },
+
+    // ===== Non-citizen =====
+    {
+        id: '13',
+        name: 'Non-Citizen Student Worker Rights',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Comprehensive legal assistance in the event of detention or federal immigration enforcement. Expanded leave provisions and remote-work provisions for immigration-related proceedings. Protections against federal presence on campus. Limits on the University sharing student worker records with federal agencies.</p>',
+        harvardPosition: '<p><strong>Ghosted the union for 9+ months</strong> without responding to this article (June 2025–February 2026). Eventually said protections against ICE would interfere with Harvard\'s "relationship with the federal government," despite peer universities like the University of California offering similar provisions for nearly a decade. Refused to release ~$400K from the existing legal defense fund that could pay for immigration counsel right now.</p>',
+        events: [
+            { date: '6/5/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: legal assistance, expanded leave, federal-presence protections. Bargaining team also raised the existing legal defense fund Harvard has refused to release.' },
+            { date: '6/5/2025', actor: 'context', label: 'Heated session', text: 'Harvard\'s lead negotiator accused the bargaining team of not being "thankful" for Harvard\'s legal efforts against the Trump administration, accused a bargaining member of "whitewashing," and was yelled at to the point a University provost had to intervene.' },
+            { date: '7/11/2025–2/9/2026', actor: 'context', label: '9 months of silence', text: 'Harvard failed to provide any counter-proposal for over nine months, while non-citizen workers faced escalating risks.' },
+            { date: '2/2/2026', actor: 'context', label: 'Still ghosting', text: 'The bargaining committee pressed Harvard again — over 8 months with no counter to the proposal. Harvard admitted they\'ve been discussing Article 13 behind closed doors but had nothing in writing.' },
+            { date: '3/26/2026', actor: 'context', label: 'Harvard refuses', text: 'Harvard said protections against ICE would interfere with their "relationship with the federal government." Peer universities like the University of California have offered similar provisions for nearly a decade.' },
+            { date: '4/9/2026', actor: 'harvard', label: 'University counter', text: 'Harvard finally delivered a counter-proposal — limited.' },
+            { date: '4/20/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+        ]
+    },
+
+    // ===== Workspace =====
+    {
+        id: '11',
+        name: 'Training',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Rights to workplace-related trainings. Limited public detail on specific disputes.</p>',
+        harvardPosition: '<p>Harvard\'s initial proposal in fall 2025.</p>',
+        events: [
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard proposal', text: 'Harvard\'s initial proposal on training.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union package', text: 'Included in union\'s 5/14 package proposal.' },
+        ]
+    },
+
+    {
+        id: '15',
+        name: 'Workspace and Materials',
+        category: 'non-economic',
+        status: 'ta',
+        statusLabel: 'TA · 2/2026',
+        unionAsks: '<p>Available private space for student workers to hold office hours, supervisor meetings, etc. — "reasonably close" to the workplace.</p>',
+        harvardPosition: '<p>Initially resisted, then agreed.</p>',
+        events: [
+            { date: '4/10/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal on workspace and materials.' },
+            { date: '5/15/2025–11/2025', actor: 'context', label: 'Negotiations', text: 'Multiple counters back and forth on definition of "reasonable" space and accessibility.' },
+            { date: '12/4/2025', actor: 'union', label: 'Union counter', text: 'Union counter clarified definition of "reasonable" as generally under a 10-minute walk and on the same campus.' },
+            { date: '2/2/2026', actor: 'ta', label: 'Tentative Agreement', text: '<strong>First TA of the bargaining cycle.</strong> Harvard agreed to provide available private space, reasonably close to the workplace — clarified at the table as generally under a 10-minute walk and on the same campus.' },
+        ]
+    },
+
+    {
+        id: '16',
+        name: 'Workload',
+        category: 'non-economic',
+        status: 'withdrawn',
+        statusLabel: 'Withdrawn 5/14/26',
+        unionAsks: '<p>Protections against unpaid teaching labor (workers performing the same job as paid peers without pay). Accountability around appointment-period workloads. Limits on workload increases without compensation.</p>',
+        harvardPosition: '<p>Did not engage meaningfully.</p>',
+        events: [
+            { date: '5/15/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal on workload — addressing unpaid teaching labor and excessive workload.' },
+            { date: '5/14/2026', actor: 'withdrawn', label: 'Withdrawn', text: 'The union strategically withdrew this article on 5/14 as part of broader package negotiations.' },
+        ]
+    },
+
+    // ===== Union =====
+    {
+        id: '18',
+        name: 'Union Access and Rights',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Information about workers in the unit (Harvard has invoked FERPA to obstruct this — including treating pay rates as "educational records"). Union representation in worker orientations. Dedicated, ADA-compliant union workspaces across campuses. Paid union leadership positions (executive board members currently volunteer uncompensated).</p>',
+        harvardPosition: '<p>Resists information sharing on FERPA grounds. Not engaging substantively on workspace or paid positions.</p>',
+        events: [
+            { date: '6/5/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: information about unit, union access in orientations, dedicated workspaces, paid positions.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'Renewed in 5/14 package. Harvard delivered a package the same day covering this article.' },
+            { date: '5/14/2026', actor: 'harvard', label: 'Harvard package', text: 'Article included in Harvard\'s 5/14 package proposal.' },
+        ]
+    },
+
+    {
+        id: '19',
+        name: 'Discipline and Discharge',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Just cause for discipline, full due process, clear union representation rights, no discipline without an investigation.</p>',
+        harvardPosition: '<p>Proposed a faster, weaker process where the University can discipline workers without any investigation — forcing workers to fight discipline after it\'s already been imposed.</p>',
+        events: [
+            { date: '8/21/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal.' },
+            { date: '4/9/2026', actor: 'harvard', label: 'University counter', text: 'Harvard counter — proposed weaker discipline process without investigation.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union pushed back, noting student workers are not disposable and need basic due process.' },
+            { date: '5/14/2026', actor: 'harvard', label: 'Harvard package', text: 'Article included in Harvard\'s 5/14 package proposal.' },
+        ]
+    },
+
+    {
+        id: '33',
+        name: 'Union Security',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p><strong>Agency shop / "fair-share" arrangement</strong> — everyone who benefits from the contract contributes via dues or an equivalent fee. Standard across most graduate union contracts. Already in place for other Harvard unions (HUCTW).</p>',
+        harvardPosition: '<p>Resists. Argues graduate workers are "different" because they enter as students. Wants to maintain current open-shop structure where many workers benefit from the contract without contributing to union finances.</p>',
+        events: [
+            { date: '5/15/2025', actor: 'union', label: 'Union proposal', text: 'Initial agency shop proposal.' },
+            { date: '6/27/2025', actor: 'union', label: 'Union counter', text: 'Union reasserted agency shop. Crimson article published same week.' },
+            { date: '9/11/2025', actor: 'context', label: 'Heated discussion', text: 'Discussion got heated. Harvard dismissed comparisons to HUCTW (which has fair-share), claiming graduate workers are "different."' },
+            { date: '10/23/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter — still resisting.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Reassertion', text: 'Reassertion.' },
+            { date: '11/21/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '2/2/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '5/14/2026', actor: 'harvard', label: 'Harvard package', text: 'Article included in Harvard\'s 5/14 package; union also countered with its own proposal.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'Union counter in 5/14 session.' },
+        ]
+    },
+
+    // ===== Compensation =====
+    {
+        id: '20',
+        name: 'Compensation',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation · The big one',
+        unionAsks: '<p><strong>$55,000 base salary</strong> (up from $49,998). <strong>$25/hour floor</strong> for hourly workers (up from $21.50). Automatic <strong>annual increases of 5% or inflation</strong>, whichever is higher. <strong>Pay equity between TFs and RAs</strong> — TFs after the G4 year in many humanities and social sciences departments currently make only ~$26,000 for teaching the standard load.</p>',
+        harvardPosition: '<p>Started with roughly <strong>1% raises over 4 years</strong>. Hourly workers offered <strong>$0.50/year</strong>. Under Harvard\'s proposal, many TFs would still qualify for <strong>SNAP food benefits through 2029</strong>. Harvard\'s lead negotiator called the proposal "generous," noting the entire raise would cost $1 million — less than 0.01% of the $10.2 billion flexible endowment.</p><p>Harvard told the bargaining committee in March that TFs needing more money should "look into getting jobs in the summer" and "work 4-5 sections." Has framed long PhD timelines as a "financial aid issue" they refuse to bargain over.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'First union compensation proposal: <strong>$55K base salary, $25/hour floor, 5%-or-inflation COLA, TF-RA pay equity</strong>. Union argues that real wages have shrunk since 2021 in inflation-adjusted terms.' },
+            { date: '3/10/2026', actor: 'harvard', label: 'Harvard counter', text: 'First Harvard counter: <strong>~1% over 4 years</strong>. Hourly workers get $0.50/year. Many TFs would still qualify for SNAP food benefits through 2029. Harvard told testifying TFs to "look into getting jobs in the summer."' },
+            { date: '3/26/2026', actor: 'union', label: 'Union counter', text: 'Union countered. Harvard reasserted that this was a "financial aid issue" they refuse to bargain over.' },
+            { date: '4/28/2026', actor: 'harvard', label: 'University counter', text: 'First session after the strike began. Harvard moved slightly on compensation but kept the increase below inflation. Called the 1% increase "generous" because it would cost them $1 million — less than 0.01% of their $10.2 billion flexible endowment. ZERO movement on hourly wages.' },
+            { date: '5/14/2026', actor: 'harvard', label: 'University counter', text: 'Harvard counter — substantive movement still inadequate.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union counter', text: '<strong>Union countered back immediately at the same session.</strong> Most active article going into the next bargaining date.' },
+        ]
+    },
+
+    // ===== Benefits =====
+    {
+        id: '21',
+        name: 'Health and Dental Insurance',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Full dental coverage. Expanded healthcare fund. Continued access to healthcare during leaves of absence (critical for workers on medical leave who currently lose coverage at the worst time).</p>',
+        harvardPosition: '<p>Limited engagement so far. Has not delivered a counter.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial proposal: full dental, expanded healthcare fund, continued coverage during leaves.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'Renewed in 5/14 package.' },
+        ]
+    },
+
+    {
+        id: '22',
+        name: 'Childcare Fund',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p><strong>Continuation of the prior $16,000-per-child coverage.</strong></p>',
+        harvardPosition: '<p><strong>$6,500/year per child.</strong> For context: Harvard\'s own campus childcare facilities charge $3,780/month — so Harvard\'s offered fund covers less than two months of Harvard\'s own childcare. The proposed childcare benefit also moves from union-administered to University-administered, with no contractual obligation to pay out a single penny.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Union proposal to continue $16,000 per child coverage.' },
+            { date: '4/28/2026', actor: 'harvard', label: 'University proposal', text: '<strong>$6,500/year per child</strong> proposed by Harvard. For comparison, Harvard\'s own childcare facilities cost $3,780/month.' },
+            { date: '5/14/2026', actor: 'context', label: 'Reasserted', text: 'Harvard reasserted the same proposal on 5/14.' },
+        ]
+    },
+
+    {
+        id: '23',
+        name: 'Hourly SW Access to Benefit Pools',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Hourly student workers should have full access to benefit funds, currently blocked. Eligibility should not depend on appointment type.</p>',
+        harvardPosition: '<p>Continued exclusion.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial proposal on hourly access to benefits.' },
+        ]
+    },
+
+    {
+        id: '24',
+        name: 'Legal Expense Fund',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Expanded legal expense fund with explicit coverage for <strong>urgent immigration representation</strong>. Release of the ~$400K already owed under the existing contract that Harvard has failed to make accessible.</p>',
+        harvardPosition: '<p>Proposed replacing the union-administered legal fund with a subsidized <strong>MetLife legal services plan</strong>. The MetLife plan explicitly does NOT cover urgent immigration representation (e.g., rapid response when work authorization is at risk) and appears not to cover Title IX representation either. Refused to engage with the existing $400K issue, calling it "not relevant" to the current contract negotiations.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial proposal: expanded legal expense fund, immigration coverage, release of existing $400K.' },
+            { date: '4/28/2026', actor: 'harvard', label: 'University proposal', text: '<strong>Subsidized MetLife legal services plan</strong> proposed by Harvard. The plan does NOT cover urgent immigration representation (rapid-response help when work authorization is at risk). Also appears not to cover Title IX representation.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union proposal', text: 'Renewed in 5/14 package. Union pushing back on inadequacy of MetLife coverage.' },
+        ]
+    },
+
+    {
+        id: '26',
+        name: 'Leave Provisions',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p><strong>12 weeks of paid family and medical leave</strong>. Healthcare coverage continued during leaves (so no one loses insurance during a medical crisis). Retained student status during medical leave. "Placeholder" credits that let workers on leave maintain enrollment.</p>',
+        harvardPosition: '<p>Rejected paid family/medical leave. Rejected continued healthcare during leaves. Rejected placeholder credits, claiming they would "reward" students not making academic progress.</p>',
+        events: [
+            { date: '5/1/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: 12 weeks paid leave, healthcare continuation, placeholder credits.' },
+            { date: '10/23/2025', actor: 'union', label: 'Union counter', text: 'Union counter. Harvard dismissed placeholder credits idea.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Harvard rejection', text: 'Harvard formally rejected: paid leave, healthcare on leave, more than one personal day per semester. Cited concerns about "rewarding" students not making academic progress.' },
+            { date: '11/21/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '3/26/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '4/13/2026', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+        ]
+    },
+
+    {
+        id: '27',
+        name: 'Holidays, Personal Days, Vacation',
+        category: 'non-economic',
+        status: 'ta',
+        statusLabel: 'TA · 4/9/2026',
+        unionAsks: '<p>Spring break leave for student workers. Required notice that workers are entitled to personal time and holidays. Expanded eligibility to include hourly workers. One vacation day per month for TFs (later expanded).</p>',
+        harvardPosition: '<p>Initially dismissive, implying TFs\' schedules are already "flexible" enough. Reached tentative agreement on 4/9/2026.</p>',
+        events: [
+            { date: '6/12/2025', actor: 'union', label: 'Union proposal', text: 'Initial proposal: spring break leave, expanded eligibility, vacation day per month for TFs.' },
+            { date: '10/23/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard dismissed initial proposal, implying TFs\' schedules were already "flexible" enough.' },
+            { date: '11/7/2025', actor: 'harvard', label: 'Reassertion', text: 'Harvard reasserted prior position.' },
+            { date: '11/21/2025', actor: 'union', label: 'Union counter', text: 'Union counter.' },
+            { date: '12/4/2025', actor: 'harvard', label: 'Harvard counter', text: 'Harvard counter.' },
+            { date: '4/9/2026', actor: 'ta', label: 'Tentative Agreement', text: '<strong>Second TA of the bargaining cycle.</strong> Article finalized.' },
+        ]
+    },
+
+    {
+        id: '30',
+        name: 'Emergency Grant',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Expanded emergency grant fund. Clear and accessible application/distribution process.</p>',
+        harvardPosition: '<p>No counter yet on record.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial proposal on emergency grant fund.' },
+        ]
+    },
+
+    // ===== Fund administration =====
+    {
+        id: 'FA',
+        name: 'Fund Access',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Workers retain control and bargained-for access to benefit funds. Maintain union-administered benefit structure with clear rules.</p>',
+        harvardPosition: '<p>Eliminate union-administered benefit funds entirely. Replace with a "new" University-administered program covering some of the same ground (much of which already exists as extracontractual programs Harvard repackaged as if they were won at the table — the Vivian B. Allen fund, GSAS family benefits, school-based emergency funds). Under Harvard\'s proposal, the University would not be contractually obligated to pay out a single penny from these funds. Disputes over fund access would be excluded from grievance. <strong>Approximately 1,000 workers would be excluded altogether: hourly workers, many Master\'s students, and DDes, EdLD, DrPH, and SJD candidates.</strong></p>',
+        events: [
+            { date: '4/28/2026', actor: 'harvard', label: 'University proposal', text: '<strong>First session after strike began.</strong> Harvard proposed eliminating union-administered benefits entirely. Approximately 1,000 workers would be excluded from the new University-administered structure.' },
+            { date: '5/14/2026', actor: 'union', label: 'Union counter', text: 'Union counter on 5/14.' },
+        ]
+    },
+
+    {
+        id: 'BFR',
+        name: 'Benefit Fund Rules',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Rules for application and distribution of benefit funds across the contract — eligibility, timelines, appeals process, transparency.</p>',
+        harvardPosition: '<p>Wants discretion to administer funds without bargained rules.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial side-letter proposal on benefit fund rules.' },
+        ]
+    },
+
+    {
+        id: 'BT',
+        name: 'Benefits Trust',
+        category: 'economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Shift management of benefit funds from the union to an independent trust, reducing administrative burden for both parties (per Crimson reporting from February).</p>',
+        harvardPosition: '<p>No counter on record.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial proposal on benefits trust structure.' },
+        ]
+    },
+
+    // ===== Misc =====
+    {
+        id: '2',
+        name: 'Titles and Classifications',
+        category: 'non-economic',
+        status: 'in-negotiation',
+        statusLabel: 'In negotiation',
+        unionAsks: '<p>Limited public detail.</p>',
+        harvardPosition: '<p>Included in Harvard\'s 5/14 full-contract package.</p>',
+        events: [
+            { date: '5/14/2026', actor: 'harvard', label: 'Harvard package', text: 'Article included in Harvard\'s 5/14 package proposal.' },
+        ]
+    },
+
+    {
+        id: 'LTP',
+        name: 'Lab Transition Program',
+        category: 'economic',
+        status: 'withdrawn',
+        statusLabel: 'Folded into Article 4',
+        unionAsks: '<p>Six months of guaranteed funding, tuition, healthcare, and full benefits for salaried RAs leaving unsafe, abusive, or broken advising relationships. Modeled on MIT\'s Guaranteed Transitional Support program.</p>',
+        harvardPosition: '<p>Did not respond as a standalone proposal.</p>',
+        events: [
+            { date: '2/9/2026', actor: 'union', label: 'Union proposal', text: 'Initial proposal: six months of guaranteed funding for RAs in unsafe/abusive advising situations.' },
+            { date: '4/13/2026', actor: 'withdrawn', label: 'Moved', text: 'Folded into Article 4 (Employment Appointment Security) as part of broader restructuring.' },
+        ]
+    },
+];
+
+// ============================================================
+// State
+// ============================================================
+
+const state = {
+    selected: null,
+    filter: 'all',
+    search: '',
+};
+
+// ============================================================
+// Stats computation
+// ============================================================
+
+function computeStats() {
+    const tas = articles.filter(a => a.status === 'ta').length;
+    const inNegotiation = articles.filter(a => a.status === 'in-negotiation').length;
+    let unionMoves = 0, harvardMoves = 0;
+    for (const a of articles) {
+        for (const e of a.events) {
+            if (e.date === '5/14/2026') {
+                if (e.actor === 'union') unionMoves++;
+                if (e.actor === 'harvard') harvardMoves++;
+            }
+        }
+    }
+    return { tas, inNegotiation, unionMoves, harvardMoves };
+}
+
+function updateStats() {
+    const s = computeStats();
+    document.getElementById('totalCount').textContent = s.inNegotiation;
+    document.getElementById('taCount').textContent = s.tas;
+    document.getElementById('unionMovesCount').textContent = s.unionMoves;
+    document.getElementById('harvardMovesCount').textContent = s.harvardMoves;
+}
+
+// ============================================================
+// Filtering
+// ============================================================
+
+function filterArticles() {
+    return articles.filter(a => {
+        if (state.filter === 'economic' && a.category !== 'economic') return false;
+        if (state.filter === 'non-economic' && a.category !== 'non-economic') return false;
+        if (state.filter === 'ta' && a.status !== 'ta') return false;
+        if (state.search) {
+            const haystack = (a.name + ' ' + a.id + ' ' + (a.unionAsks || '') + ' ' + (a.harvardPosition || '')).toLowerCase();
+            if (!haystack.includes(state.search.toLowerCase())) return false;
+        }
+        return true;
+    });
+}
+
+// ============================================================
+// Sidebar rendering
+// ============================================================
+
+function renderSidebar() {
+    const list = document.getElementById('articleList');
+    const filtered = filterArticles();
+    if (filtered.length === 0) {
+        list.innerHTML = '<li style="padding: 1rem; color: var(--ink-light); font-size: 0.85rem; text-align: center;">No articles match.</li>';
+        return;
+    }
+    list.innerHTML = filtered.map(a => {
+        const statusClass = a.status === 'ta' ? 'ta' : a.status === 'withdrawn' ? 'withdrawn' : '';
+        const categoryClass = a.category === 'economic' ? 'economic' : '';
+        const activeClass = state.selected === a.id ? 'active' : '';
+        return `
+            <li class="article-item ${activeClass}" data-id="${a.id}">
+                <div class="article-item-num">Article ${a.id}</div>
+                <div class="article-item-name">${a.name}</div>
+                <div class="article-item-meta">
+                    <span class="status-pill ${categoryClass}">${a.category === 'economic' ? 'Economic' : 'Non-economic'}</span>
+                    <span class="status-pill ${statusClass}">${a.statusLabel}</span>
+                </div>
+            </li>`;
+    }).join('');
+
+    list.querySelectorAll('.article-item').forEach(item => {
+        item.addEventListener('click', () => {
+            selectArticle(item.dataset.id);
+        });
+    });
+}
+
+// ============================================================
+// Detail rendering
+// ============================================================
+
+function renderDetail() {
+    const detail = document.getElementById('detail');
+    if (!state.selected) {
+        detail.innerHTML = `
+            <div class="empty">
+                <div class="empty-title">Choose an article</div>
+                <div class="empty-text">Click any article in the sidebar to see the full timeline — every proposal, every counter, every reassertion — plus what the union has asked for and what Harvard has put on the table.</div>
+            </div>`;
+        return;
+    }
+    const a = articles.find(x => x.id === state.selected);
+    if (!a) return;
+
+    const statusClass = a.status === 'ta' ? 'ta' : a.status === 'withdrawn' ? 'withdrawn' : '';
+    const categoryClass = a.category === 'economic' ? 'economic' : '';
+
+    const eventsHtml = a.events.map(e => `
+        <div class="event ${e.actor}">
+            <div class="event-header">
+                <span class="event-date">${e.date}</span>
+                <span class="event-tag ${e.actor}">${e.label}</span>
+            </div>
+            <div class="event-content">${e.text}</div>
+        </div>
+    `).join('');
+
+    detail.innerHTML = `
+        <div class="detail-header">
+            <div class="detail-eyebrow">Article ${a.id}</div>
+            <h2 class="detail-title">${a.name}</h2>
+            <div class="detail-meta">
+                <span class="status-pill ${categoryClass}">${a.category === 'economic' ? 'Economic' : 'Non-economic'}</span>
+                <span class="status-pill ${statusClass}">${a.statusLabel}</span>
+                <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.08em;">${a.events.length} interaction${a.events.length === 1 ? '' : 's'}</span>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-col union">
+                <div class="comparison-label">What the union has asked for</div>
+                <div class="comparison-content">${a.unionAsks}</div>
+            </div>
+            <div class="comparison-col harvard">
+                <div class="comparison-label">What Harvard has put on the table</div>
+                <div class="comparison-content">${a.harvardPosition}</div>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <div class="section-heading">Timeline of interactions</div>
+            <div class="timeline">${eventsHtml}</div>
+        </div>
+    `;
+
+    detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// Interaction
+// ============================================================
+
+function selectArticle(id) {
+    state.selected = id;
+    renderSidebar();
+    renderDetail();
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.filter = btn.dataset.filter;
+        renderSidebar();
+    });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    state.search = e.target.value;
+    renderSidebar();
+});
+
+// ============================================================
+// Init
+// ============================================================
+
+updateStats();
+renderSidebar();
+renderDetail();
+
+// Select Article 20 (Compensation) by default — most active
+setTimeout(() => selectArticle('20'), 100);
+
+</script>
+</body>
+</html>
