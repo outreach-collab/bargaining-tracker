@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HGSU 2026 Bargaining Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #f4f1ea;
+    --bg-card: #ffffff;
+    --bg-soft: #faf8f3;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-light: #888;
+    --rule: #d6d0c4;
+    --rule-soft: #e8e3d8;
+    --union: #1e3a5f;
+    --union-soft: #d3dde8;
+    --harvard: #8b3a3a;
+    --harvard-soft: #ebd5d3;
+    --ta: #3d6b3a;
+    --ta-soft: #d4e0d2;
+    --withdrawn: #888;
+    --withdrawn-soft: #e0e0e0;
+    --accent: #b58923;
+    --serif: 'Newsreader', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.page { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+/* ===== Header ===== */
+header { border-bottom: 2px solid var(--ink); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+
+.title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+.title em { font-style: italic; color: var(--harvard); }
+
+.subtitle {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+}
+
+.stats-bar {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule-soft);
+    flex-wrap: wrap;
+}
+
+.stat { display: flex; flex-direction: column; gap: 0.15rem; }
+.stat-num {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ink);
+}
+.stat-num.union { color: var(--union); }
+.stat-num.ta { color: var(--ta); }
+.stat-num.harvard { color: var(--harvard); }
+.stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+}
+
+/* ===== Filter bar ===== */
+.filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.55rem 0.85rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+}
+.search-input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+.filter-group {
+    display: flex; gap: 0;
+    border: 1px solid var(--rule);
+    background: var(--bg-card);
+}
+
+.filter-btn {
+    background: transparent; border: none;
+    padding: 0.55rem 0.85rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-right: 1px solid var(--rule-soft);
+}
+
+.filter-btn:last-child { border-right: none; }
+.filter-btn:hover { background: var(--bg-soft); color: var(--ink); }
+.filter-btn.active { background: var(--ink); color: var(--bg); }
+
+/* ===== Two-column layout ===== */
+.dashboard {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.sidebar {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    position: sticky;
+    top: 1rem;
+}
+
+.sidebar-header {
+    padding: 0.85rem 1rem;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    position: sticky; top: 0; z-index: 1;
+}
+
+.article-list { list-style: none; }
+
+.article-item {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--rule-soft);
+    cursor: pointer;
+    transition: background 0.12s;
+}
+.article-item:hover:not(.active) { background: var(--bg-soft); }
+.article-item.active { background: var(--ink); color: var(--bg); }
+
+.article-item-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+}
+
+.article-item.active .article-item-num { color: rgba(255,255,255,0.7); }
+
+.article-item-name {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    margin-bottom: 0.35rem;
+}
+
+.article-item-meta {
+    display: flex; gap: 0.45rem; align-items: center;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.article-item.active .article-item-meta { color: rgba(255,255,255,0.6); }
+
+.status-pill {
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    background: var(--rule-soft);
+    color: var(--ink-soft);
+    font-weight: 500;
+}
+.status-pill.ta { background: var(--ta-soft); color: var(--ta); }
+.status-pill.withdrawn { background: var(--withdrawn-soft); color: var(--withdrawn); }
+.status-pill.economic { background: #fae8c3; color: #856015; }
+
+.article-item.active .status-pill {
+    background: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.9);
+}
+
+/* ===== Detail panel ===== */
+.detail {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 2rem 2.25rem;
+    min-height: 400px;
+}
+
+.detail-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+}
+
+.detail-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+}
+
+.detail-meta {
+    display: flex; gap: 0.5rem; align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.detail-meta .status-pill {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ===== Comparison ===== */
+.comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.comparison-col {
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    background: var(--bg-soft);
+}
+
+.comparison-col.union { border-top: 4px solid var(--union); }
+.comparison-col.harvard { border-top: 4px solid var(--harvard); }
+
+.comparison-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.comparison-col.union .comparison-label { color: var(--union); }
+.comparison-col.harvard .comparison-label { color: var(--harvard); }
+
+.comparison-content {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+/* ===== Timeline ===== */
+.timeline-section { margin-top: 2rem; }
+
+.section-heading {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-heading::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--ink);
+}
+
+.timeline { position: relative; padding-left: 1.5rem; }
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.45rem;
+    top: 0.5rem; bottom: 0.5rem;
+    width: 1px;
+    background: var(--rule);
+}
+
+.event {
+    position: relative;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule-soft);
+}
+
+.event:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.event::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.4rem;
+    width: 0.9rem; height: 0.9rem;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--ink);
+    z-index: 1;
+}
+
+.event.union::before { border-color: var(--union); background: var(--union); }
+.event.harvard::before { border-color: var(--harvard); background: var(--harvard); }
+.event.ta::before { border-color: var(--ta); background: var(--ta); }
+.event.withdrawn::before { border-color: var(--withdrawn); background: var(--withdrawn); }
+.event.mixed::before { border-color: var(--accent); background: var(--accent); }
+
+.event-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.45rem;
+}
+
+.event-date {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.event-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    border-radius: 2px;
+}
+
+.event-tag.union { background: var(--union-soft); color: var(--union); }
+.event-tag.harvard { background: var(--harvard-soft); color: var(--harvard); }
+.event-tag.ta { background: var(--ta-soft); color: var(--ta); }
+.event-tag.withdrawn { background: var(--withdrawn-soft); color: var(--withdrawn); }
+.event-tag.mixed { background: #f7e6b8; color: #856015; }
+
+.event-explainer {
+    font-family: var(--serif);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-top: 0.35rem;
+    font-style: italic;
+}
+
+.event-source-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+}
+
+.event-source-link:hover { color: var(--ink); border-color: var(--ink); }
+.event-source-link::after { content: ' →'; }
+
+.event-content {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+}
+
+.event-debrief {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    font-size: 0.92rem;
+}
+
+.event-debrief-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.event-debrief-text {
+    font-family: var(--serif);
+    color: var(--ink);
+    line-height: 1.55;
+}
+
+.event-debrief-text.event-debrief-empty {
+    color: var(--ink-light);
+    font-style: italic;
+}
+
+.event-debrief-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+}
+
+.event-debrief-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ===== Empty / Loading / Error ===== */
+.empty, .loading, .error-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-light);
+}
+
+.empty-title, .loading-title, .error-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink-soft);
+}
+
+.empty-text, .loading-text, .error-text {
+    font-size: 0.9rem;
+    max-width: 50ch;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.error-state .error-title { color: var(--harvard); }
+
+.spinner {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid var(--rule);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== Footer ===== */
+.footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    text-align: center;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.footer a {
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.footer a:hover { color: var(--ink); }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .dashboard { grid-template-columns: 1fr; }
+    .sidebar { max-height: 320px; position: relative; top: auto; }
+    .comparison { grid-template-columns: 1fr; }
+    .detail { padding: 1.5rem 1.25rem; }
+    .page { padding: 1.25rem; }
+}
+
+.sidebar::-webkit-scrollbar { width: 8px; }
+.sidebar::-webkit-scrollbar-track { background: var(--bg); }
+.sidebar::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--ink-light); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+    <div class="title-row">
+        <h1 class="title">HGSU 2026 <em>Bargaining</em> Tracker</h1>
+        <div class="subtitle" id="lastUpdated">Loading...</div>
+    </div>
+    <div class="stats-bar">
+        <div class="stat"><div class="stat-num" id="totalCount">—</div><div class="stat-label">Articles in negotiation</div></div>
+        <div class="stat"><div class="stat-num ta" id="taCount">—</div><div class="stat-label">Tentative agreements</div></div>
+        <div class="stat"><div class="stat-num" id="sessionsCount">—</div><div class="stat-label">Bargaining sessions</div></div>
+        <div class="stat"><div class="stat-num" id="monthsCount">—</div><div class="stat-label">Months at the table</div></div>
+        <div class="stat"><div class="stat-num harvard" id="strikeDays">—</div><div class="stat-label">Days on strike</div></div>
+    </div>
+</header>
+
+<div class="filter-bar">
+    <input type="search" class="search-input" id="searchInput" placeholder="Search articles by name or topic...">
+    <div class="filter-group" id="categoryFilter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="economic">Economic</button>
+        <button class="filter-btn" data-filter="non-economic">Non-economic</button>
+        <button class="filter-btn" data-filter="ta">TA'd</button>
+    </div>
+</div>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="sidebar-header">Articles</div>
+        <ul class="article-list" id="articleList">
+            <li style="padding: 2rem 1rem; text-align: center; color: var(--ink-light); font-size: 0.85rem;">
+                <div class="spinner"></div>
+                Loading...
+            </li>
+        </ul>
+    </aside>
+    <main class="detail" id="detail">
+        <div class="loading">
+            <div class="spinner"></div>
+            <div class="loading-title">Loading bargaining data...</div>
+            <div class="loading-text">Fetching the latest from the bargaining tracker spreadsheet and the bargaining-updates page.</div>
+        </div>
+    </main>
+</div>
+
+<div class="footer">
+    Sources: <a href="https://harvardgradunion.org/bargaining-updates/" target="_blank">harvardgradunion.org/bargaining-updates</a>
+    · Last refreshed: <span id="refreshTime">—</span>
+    · For the official tracker spreadsheet, see the link above.
+</div>
+
+</div>
+
+<script>
+'use strict';
+
+// ============================================================
+// State and data
+// ============================================================
+
+const state = {
+    narratives: null,
+    csvData: null,
+    articles: [],
+    sessions: [],
+    selected: null,
+    filter: 'all',
+    search: '',
+    csvError: false,
+};
+
+// ============================================================
+// Parsing helpers
+// ============================================================
+
+/**
+ * Parse a CSV string into a 2D array. Handles quoted fields, embedded commas,
+ * embedded newlines, and escaped quotes ("").
+ */
+function parseCSV(text) {
+    const rows = [];
+    let row = [];
+    let field = '';
+    let inQuotes = false;
+    let i = 0;
+    while (i < text.length) {
+        const c = text[i];
+        if (inQuotes) {
+            if (c === '"') {
+                if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+                inQuotes = false; i++; continue;
+            }
+            field += c; i++; continue;
+        } else {
+            if (c === '"') { inQuotes = true; i++; continue; }
+            if (c === ',') { row.push(field); field = ''; i++; continue; }
+            if (c === '\r') { i++; continue; }
+            if (c === '\n') {
+                row.push(field); field = '';
+                rows.push(row); row = [];
+                i++; continue;
+            }
+            field += c; i++;
+        }
+    }
+    if (field !== '' || row.length > 0) { row.push(field); rows.push(row); }
+    return rows;
+}
+
+/**
+ * Normalize a date string from M/D/YYYY (the format in the tracker CSV) to
+ * YYYY-MM-DD (the format in narratives.json). Returns null if can't parse.
+ */
+function normalizeDate(s) {
+    if (!s) return null;
+    s = s.trim();
+    // Already ISO?
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    // M/D/YYYY or M/D/YY
+    const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+    if (m) {
+        let year = m[3];
+        if (year.length === 2) year = '20' + year;
+        const month = m[1].padStart(2, '0');
+        const day = m[2].padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    return null;
+}
+
+/**
+ * Classify a tracker cell value (e.g. "Union counter", "Harvard reassertion 2/2/26", "TA")
+ * into an actor type for color coding.
+ */
+function classifyCell(value) {
+    const v = value.toLowerCase();
+    if (v.includes('union') || v.includes('we ')) return 'union';
+    if (v.includes('harvard') || v.includes('university') || v.includes('management')) return 'harvard';
+    if (v.includes('ta') && v.length <= 5) return 'ta';
+    if (v === 'ta' || v.includes('tentative agreement')) return 'ta';
+    if (v.includes('withdraw') || v.includes('moved to')) return 'withdrawn';
+    return 'mixed';
+}
+
+/**
+ * Look up a cell value against the glossary and return a plain-English explanation.
+ * Handles "Harvard reassertion 2/2/26" by extracting the date and rephrasing.
+ * Returns empty string if no glossary entry matches.
+ */
+function explainCell(value) {
+    if (!value || !state.narratives || !state.narratives.glossary) return '';
+    const glossary = state.narratives.glossary;
+    const v = value.toLowerCase().trim();
+
+    // Special case: "Harvard reassertion <date>" — extract the date and rephrase
+    const reassertMatch = v.match(/^(harvard|university)\s+reassertion\s+(\d{1,2}\/\d{1,2}\/\d{2,4})/);
+    if (reassertMatch) {
+        return `Harvard did not move at this session. They restated the position they had already proposed on ${reassertMatch[2]}.`;
+    }
+
+    // Special case: "Moved to article N"
+    const movedMatch = v.match(/^moved to article\s+(\w+)/);
+    if (movedMatch) {
+        return `This article was folded into Article ${movedMatch[1]} rather than negotiated separately.`;
+    }
+
+    // Try exact match first
+    if (glossary[v]) return glossary[v];
+
+    // Try prefix matches (longer keys first to avoid e.g. "union" matching "union counter")
+    const keys = Object.keys(glossary).sort((a, b) => b.length - a.length);
+    for (const key of keys) {
+        if (v.startsWith(key)) return glossary[key];
+    }
+
+    return '';
+}
+
+/**
+ * Look up an optional source link for a given event (article + date + label).
+ * Match logic: articleId and date must match exactly. Label match is optional —
+ * if a label is specified in the eventLinks entry, it must be a case-insensitive
+ * substring match against the cell value. If no label specified, matches any event
+ * on that article+date.
+ * Returns { url, linkText } or null.
+ */
+function findEventLink(articleId, eventDate, eventLabel) {
+    if (!state.narratives || !state.narratives.eventLinks) return null;
+    const links = state.narratives.eventLinks;
+    const labelLower = (eventLabel || '').toLowerCase();
+    for (const entry of links) {
+        if (entry.articleId !== articleId) continue;
+        if (entry.date !== eventDate) continue;
+        if (entry.label) {
+            if (!labelLower.includes(entry.label.toLowerCase())) continue;
+        }
+        return { url: entry.url, linkText: entry.linkText || 'Source' };
+    }
+    return null;
+}
+
+/**
+ * Build per-article event lists from CSV grid.
+ * Returns a map: { articleId: [ { date, actor, label, text } ] }
+ */
+function extractEventsFromCSV(rows) {
+    if (!rows || rows.length < 2) return {};
+
+    // Find the header row. Look for one containing dates.
+    let headerIdx = -1;
+    for (let i = 0; i < Math.min(rows.length, 5); i++) {
+        const dateCount = rows[i].filter(c => normalizeDate(c)).length;
+        if (dateCount >= 3) { headerIdx = i; break; }
+    }
+    if (headerIdx < 0) return {};
+
+    const header = rows[headerIdx];
+    // Map column index -> ISO date (for date columns) or null (for non-date columns)
+    const colDates = header.map(c => normalizeDate(c));
+
+    // Find the article-id column. Usually first column with short codes / numbers.
+    // For HGSU sheet, looks like column 0 is article number.
+    const idCol = 0;
+
+    const events = {};
+    for (let r = headerIdx + 1; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || row.length === 0) continue;
+        const id = (row[idCol] || '').trim();
+        if (!id || id.toLowerCase().includes('current contract')) continue;
+
+        for (let c = 0; c < row.length; c++) {
+            const date = colDates[c];
+            if (!date) continue;
+            const cellRaw = (row[c] || '').trim();
+            if (!cellRaw) continue;
+
+            // A cell may have multiple events separated by newline
+            const parts = cellRaw.split(/\n+/).map(s => s.trim()).filter(Boolean);
+            for (const part of parts) {
+                const actor = classifyCell(part);
+                if (!events[id]) events[id] = [];
+                events[id].push({
+                    date,
+                    actor,
+                    label: part,
+                    text: part,
+                });
+            }
+        }
+    }
+
+    // Sort each article's events by date ascending
+    for (const id of Object.keys(events)) {
+        events[id].sort((a, b) => a.date.localeCompare(b.date));
+    }
+    return events;
+}
+
+// ============================================================
+// Data loading
+// ============================================================
+
+async function loadData() {
+    try {
+        // Load narratives.json (must succeed)
+        const narResp = await fetch('narratives.json');
+        if (!narResp.ok) throw new Error(`Couldn't load narratives.json (status ${narResp.status})`);
+        state.narratives = await narResp.json();
+        state.articles = state.narratives.articles;
+        state.sessions = state.narratives.sessions;
+    } catch (err) {
+        document.getElementById('detail').innerHTML = `
+            <div class="error-state">
+                <div class="error-title">Failed to load narratives</div>
+                <div class="error-text">${escapeHtml(err.message)}<br><br>
+                Make sure <code>narratives.json</code> is in the same folder as this HTML file.</div>
+            </div>`;
+        return;
+    }
+
+    // Try to load the CSV (auto-update from sheets)
+    try {
+        const csvUrl = state.narratives.meta.trackerCsvUrl;
+        if (!csvUrl) throw new Error('No tracker CSV URL in narratives.json');
+        const csvResp = await fetch(csvUrl);
+        if (!csvResp.ok) throw new Error(`CSV fetch failed (status ${csvResp.status})`);
+        const csvText = await csvResp.text();
+        const rows = parseCSV(csvText);
+        const events = extractEventsFromCSV(rows);
+        state.csvData = { rows, events };
+        // Attach events to articles
+        for (const a of state.articles) {
+            a.events = events[a.id] || [];
+        }
+    } catch (err) {
+        state.csvError = true;
+        // Fall back: articles will have no events from CSV
+        for (const a of state.articles) {
+            a.events = [];
+        }
+    }
+
+    // Compute headline stats
+    computeStats();
+
+    // Render
+    renderSidebar();
+    renderDetail();
+
+    // Select Compensation (Article 20) by default
+    selectArticle('20');
+
+    document.getElementById('refreshTime').textContent = new Date().toLocaleString();
+}
+
+function computeStats() {
+    const tas = state.articles.filter(a => a.status === 'ta').length;
+    const inNeg = state.articles.filter(a => a.status === 'in-negotiation' || a.status === 'no-agreement').length;
+    document.getElementById('totalCount').textContent = inNeg;
+    document.getElementById('taCount').textContent = tas;
+    document.getElementById('sessionsCount').textContent = state.sessions.length;
+
+    const meta = state.narratives.meta;
+    const today = new Date();
+    if (meta.strikeStartDate) {
+        const start = new Date(meta.strikeStartDate);
+        const days = Math.floor((today - start) / (1000 * 60 * 60 * 24)) + 1;
+        document.getElementById('strikeDays').textContent = days > 0 ? days : '—';
+    }
+    if (meta.bargainingStartDate) {
+        const start = new Date(meta.bargainingStartDate);
+        const months = (today.getFullYear() - start.getFullYear()) * 12 + (today.getMonth() - start.getMonth());
+        document.getElementById('monthsCount').textContent = months;
+    }
+    document.getElementById('lastUpdated').textContent = `Tracker updated through ${meta.lastUpdatedFromSource || 'unknown'}`;
+}
+
+// ============================================================
+// Rendering
+// ============================================================
+
+function filterArticles() {
+    return state.articles.filter(a => {
+        if (state.filter === 'economic' && a.category !== 'economic') return false;
+        if (state.filter === 'non-economic' && a.category !== 'non-economic') return false;
+        if (state.filter === 'ta' && a.status !== 'ta') return false;
+        if (state.search) {
+            const haystack = (a.name + ' ' + a.id + ' ' + (a.unionAsks || '') + ' ' + (a.harvardPosition || '')).toLowerCase();
+            if (!haystack.includes(state.search.toLowerCase())) return false;
+        }
+        return true;
+    });
+}
+
+function renderSidebar() {
+    const list = document.getElementById('articleList');
+    const filtered = filterArticles();
+    if (filtered.length === 0) {
+        list.innerHTML = '<li style="padding: 1rem; color: var(--ink-light); font-size: 0.85rem; text-align: center;">No articles match.</li>';
+        return;
+    }
+    list.innerHTML = filtered.map(a => {
+        const statusClass = a.status === 'ta' ? 'ta' : a.status === 'withdrawn' ? 'withdrawn' : '';
+        const categoryClass = a.category === 'economic' ? 'economic' : '';
+        const activeClass = state.selected === a.id ? 'active' : '';
+        return `
+            <li class="article-item ${activeClass}" data-id="${escapeAttr(a.id)}">
+                <div class="article-item-num">Article ${escapeHtml(a.id)}</div>
+                <div class="article-item-name">${escapeHtml(a.name)}</div>
+                <div class="article-item-meta">
+                    <span class="status-pill ${categoryClass}">${a.category === 'economic' ? 'Economic' : 'Non-economic'}</span>
+                    <span class="status-pill ${statusClass}">${escapeHtml(a.statusLabel)}</span>
+                </div>
+            </li>`;
+    }).join('');
+
+    list.querySelectorAll('.article-item').forEach(item => {
+        item.addEventListener('click', () => selectArticle(item.dataset.id));
+    });
+}
+
+function formatDate(iso) {
+    if (!iso) return '';
+    const [y, m, d] = iso.split('-');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[parseInt(m) - 1]} ${parseInt(d)}, ${y}`;
+}
+
+function renderDetail() {
+    const detail = document.getElementById('detail');
+    if (!state.selected) {
+        detail.innerHTML = `
+            <div class="empty">
+                <div class="empty-title">Choose an article</div>
+                <div class="empty-text">Click any article in the sidebar to see the full timeline of bargaining activity plus what each side has asked for.</div>
+            </div>`;
+        return;
+    }
+    const a = state.articles.find(x => x.id === state.selected);
+    if (!a) return;
+
+    const statusClass = a.status === 'ta' ? 'ta' : a.status === 'withdrawn' ? 'withdrawn' : '';
+    const categoryClass = a.category === 'economic' ? 'economic' : '';
+
+    // Build sessions map for quick lookup by date.
+    // We include ALL sessions, not just ones that tag this article in articleRefs,
+    // so every timeline event on a known session date gets the debrief block.
+    // The articleSummaries lookup below handles the "not covered" case.
+    const sessionsByDate = {};
+    for (const s of state.sessions) {
+        sessionsByDate[s.date] = s;
+    }
+
+    let eventsHtml;
+    if (!a.events || a.events.length === 0) {
+        if (state.csvError) {
+            eventsHtml = `<p style="font-style:italic;color:var(--ink-light);">Live tracker data unavailable. Check the <a href="${escapeAttr(state.narratives.meta.sourceUrl)}" target="_blank">bargaining-updates page</a> for the latest.</p>`;
+        } else {
+            eventsHtml = `<p style="font-style:italic;color:var(--ink-light);">No activity recorded yet on this article.</p>`;
+        }
+    } else {
+        eventsHtml = a.events.map(e => {
+            const session = sessionsByDate[e.date];
+            const explanation = explainCell(e.label);
+            const sourceLink = findEventLink(a.id, e.date, e.label);
+            let debriefHtml = '';
+            if (session) {
+                const perArticleSummary = (session.articleSummaries && session.articleSummaries[a.id]) || '';
+                const notCovered = !perArticleSummary && !session.debriefNotPublished;
+                const debriefPending = session.debriefNotPublished;
+                let bodyText;
+                if (perArticleSummary) {
+                    bodyText = perArticleSummary;
+                } else if (debriefPending) {
+                    bodyText = 'A debrief from this session has not been published yet by the bargaining committee.';
+                } else {
+                    bodyText = 'This article is not covered in this debrief.';
+                }
+                debriefHtml = `
+                    <div class="event-debrief">
+                        <div class="event-debrief-title">${escapeHtml(session.title)}</div>
+                        <div class="event-debrief-text${notCovered || debriefPending ? ' event-debrief-empty' : ''}">${escapeHtml(bodyText)}</div>
+                        ${session.debriefUrl && !debriefPending ? `<a href="${escapeAttr(session.debriefUrl)}" target="_blank" class="event-debrief-link">Read full debrief →</a>` : ''}
+                    </div>`;
+            }
+            return `
+                <div class="event ${e.actor}">
+                    <div class="event-header">
+                        <span class="event-date">${escapeHtml(formatDate(e.date))}</span>
+                        <span class="event-tag ${e.actor}">${escapeHtml(e.label)}</span>
+                    </div>
+                    ${explanation ? `<div class="event-explainer">${escapeHtml(explanation)}</div>` : ''}
+                    ${sourceLink ? `<a href="${escapeAttr(sourceLink.url)}" target="_blank" class="event-source-link">${escapeHtml(sourceLink.linkText)}</a>` : ''}
+                    ${debriefHtml}
+                </div>`;
+        }).join('');
+    }
+
+    detail.innerHTML = `
+        <div class="detail-header">
+            <div class="detail-eyebrow">Article ${escapeHtml(a.id)}</div>
+            <h2 class="detail-title">${escapeHtml(a.name)}</h2>
+            <div class="detail-meta">
+                <span class="status-pill ${categoryClass}">${a.category === 'economic' ? 'Economic' : 'Non-economic'}</span>
+                <span class="status-pill ${statusClass}">${escapeHtml(a.statusLabel)}</span>
+                <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.08em;">${(a.events || []).length} interaction${(a.events || []).length === 1 ? '' : 's'}</span>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-col union">
+                <div class="comparison-label">What the union has asked for</div>
+                <div class="comparison-content">${escapeHtml(a.unionAsks)}</div>
+            </div>
+            <div class="comparison-col harvard">
+                <div class="comparison-label">What Harvard has put on the table</div>
+                <div class="comparison-content">${escapeHtml(a.harvardPosition)}</div>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <div class="section-heading">Timeline of interactions</div>
+            <div class="timeline">${eventsHtml}</div>
+        </div>
+    `;
+    detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function selectArticle(id) {
+    state.selected = id;
+    renderSidebar();
+    renderDetail();
+}
+
+// ============================================================
+// Utilities
+// ============================================================
+
+function escapeHtml(s) {
+    return String(s || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function escapeAttr(s) {
+    return escapeHtml(s);
+}
+
+// ============================================================
+// Event handlers
+// ============================================================
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.filter = btn.dataset.filter;
+        renderSidebar();
+    });
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    state.search = e.target.value;
+    renderSidebar();
+});
+
+// ============================================================
+// Init
+// ============================================================
+
+loadData();
+
+</script>
+</body>
+</html>
