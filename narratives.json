@@ -1025,7 +1025,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Codified identity-specific protections (race, color, religion, caste, creed, sex, sexual orientation, etc.) that exist in the current contract. 'Real Recourse': access to the union grievance process as an option in addition to Harvard's internal process, so survivors can choose. Anti-retaliation language. Right to union representation in meetings. (1 in 5 student workers have experienced harassment, discrimination, or bullying in their workplace.)",
-      "harvardPosition": "Removed identity-specific protections from contract language; defers to University-wide policy that Harvard can amend at any time without union input. Refuses union grievance access (survivors get only the internal process Harvard fully controls). Initially stripped out the right to union representation in meetings. Added 'or retaliation' phrasing as a minor concession. Cited that ~10% of complaints being dismissed is 'negligible.'"
+      "harvardPosition": "Removed identity-specific protections from contract language; defers to University-wide policy that Harvard can amend at any time without union input. Refuses union grievance access (survivors get only the internal process Harvard fully controls). Initially stripped out the right to union representation in meetings. Added 'or retaliation' phrasing as a minor concession. Cited that roughly 10% of complaints being dismissed is 'negligible.' On 5/14, Harvard said they were considering the union's proposal to allow grievances for remedies in Title IX, discrimination, and harassment cases, and looking into the legal details."
     },
     {
       "id": "8",
@@ -1070,7 +1070,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Comprehensive legal assistance in the event of detention or federal immigration enforcement. Expanded leave provisions and remote-work provisions for immigration-related proceedings. Protections against federal presence on campus. Limits on the University sharing student worker records with federal agencies.",
-      "harvardPosition": "Ghosted the union for 9+ months without responding (June 2025–February 2026). Eventually said protections against ICE would interfere with Harvard's 'relationship with the federal government,' though peer universities like the University of California have offered similar provisions for nearly a decade. Refused to release ~$400K from the existing legal defense fund."
+      "harvardPosition": "Ghosted the union for 9+ months without responding (June 2025 to February 2026). Eventually said protections against ICE would interfere with Harvard's 'relationship with the federal government,' though peer universities including Yale, the University of California system, and WPI have passed similar ICE-off-campus language. Refused to release roughly $400K from the existing legal defense fund. As of 5/14, no movement on the union's immigration leave proposal, even though Harvard implemented a similar policy during COVID for workers detained or stranded abroad."
     },
     {
       "id": "15",
@@ -1097,7 +1097,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Information about workers in the unit (Harvard has invoked FERPA to obstruct this, including treating pay rates as 'educational records'). Union representation in worker orientations. Dedicated, ADA-compliant union workspaces across campuses. Paid union leadership positions (executive board members currently volunteer uncompensated).",
-      "harvardPosition": "Resists information sharing on FERPA grounds. Not engaging substantively on workspace or paid positions."
+      "harvardPosition": "Resists information sharing on FERPA grounds. Not engaging substantively on workspace or paid positions. Harvard's 5/14 package would also reduce union access to worker orientations."
     },
     {
       "id": "19",
@@ -1106,16 +1106,16 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Just cause for discipline. Full due process. Clear union representation rights. No discipline without an investigation.",
-      "harvardPosition": "Proposed a faster, weaker process where the University can discipline workers without any investigation, forcing workers to fight discipline after it's already been imposed."
+      "harvardPosition": "Proposed a faster, weaker process where the University can discipline workers without any investigation, forcing workers to fight discipline after it's already been imposed. Harvard's 5/14 package would further erode fair processes for discipline and discharge."
     },
     {
       "id": "20",
       "name": "Compensation",
       "category": "economic",
       "status": "in-negotiation",
-      "statusLabel": "In negotiation",
+      "statusLabel": "In negotiation · The big one",
       "unionAsks": "$55,000 base salary (up from $49,998). $25/hour floor for hourly workers (up from $21.50). Automatic annual increases of 5% or inflation, whichever is higher. Pay equity between TFs and RAs — TFs after the G4 year in many humanities and social sciences departments currently make only ~$26,000 for teaching the standard load.",
-      "harvardPosition": "Started with roughly 1% raises over 4 years. Hourly workers offered $0.50/year. Many TFs would still qualify for SNAP food benefits through 2029. Harvard's lead negotiator called the proposal 'generous,' noting the entire raise would cost $1 million — less than 0.01% of the $10.2 billion flexible endowment. Told the bargaining committee in March that TFs needing more money should 'look into getting jobs in the summer' and 'work 4-5 sections.'"
+      "harvardPosition": "The 5/14 package offers raises of 1% per year rising to 11% from 10% over a 4-year contract, averaging 2.75% per year, well below inflation. Hourly workers offered $0.50/year. Many TFs would still qualify for SNAP food benefits through 2029. Harvard offered $1 million more in compensation while the endowment grew by $3.7 billion in the same period; their lead negotiator called the proposal 'generous.' Told the bargaining committee in March that TFs needing more money should 'look into getting jobs in the summer' and 'work 4-5 sections.' On pay equity, when asked at the 5/14 session why Harvard TFs are paid nearly 60% less than TFs at MIT, a top GSAS administrator responded: 'Maybe TFs at MIT work more.'"
     },
     {
       "id": "21",
@@ -1124,7 +1124,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Full dental coverage. Expanded healthcare fund. Continued access to healthcare during leaves of absence (critical for workers on medical leave who currently lose coverage at the worst time).",
-      "harvardPosition": "Limited engagement so far. Has not delivered a substantive counter."
+      "harvardPosition": "Limited engagement until 5/14. Harvard's 5/14 package would eliminate the union-administered healthcare fund and remove guaranteed health insurance during medical leaves, both of which are critical protections in the current contract."
     },
     {
       "id": "22",
@@ -1133,7 +1133,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Continuation of the prior $16,000-per-child coverage.",
-      "harvardPosition": "$6,500/year per child. For context: Harvard's own campus childcare facilities charge $3,780/month — so Harvard's offered fund covers less than two months of Harvard's own childcare. The proposed childcare benefit also moves from union-administered to University-administered, with no contractual obligation to pay out a single penny."
+      "harvardPosition": "$6,500/year per child. For context: Harvard's own campus childcare facilities charge $3,780/month, so the offered fund covers less than two months of Harvard's own program. The proposed childcare benefit also moves from union-administered to University-administered, with no contractual obligation to pay out a single penny. Harvard's 5/14 package would eliminate the union-administered childcare benefit entirely, alongside healthcare, emergency funds, dental, legal expense, non-citizen worker assistance, and dependent premiums."
     },
     {
       "id": "23",
@@ -1151,7 +1151,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Expanded legal expense fund with explicit coverage for urgent immigration representation. Release of the ~$400K already owed under the existing contract that Harvard has failed to make accessible.",
-      "harvardPosition": "Proposed replacing the union-administered legal fund with a subsidized MetLife legal services plan. The MetLife plan explicitly does NOT cover urgent immigration representation (rapid response when work authorization is at risk). Also appears not to cover Title IX representation. Refused to engage with the existing $400K issue, calling it 'not relevant.'"
+      "harvardPosition": "Proposed replacing the union-administered legal fund with a subsidized MetLife legal services plan. The MetLife plan explicitly does NOT cover urgent immigration representation (rapid response when work authorization is at risk). Also appears not to cover Title IX representation. Refused to engage with the existing $400K issue, calling it 'not relevant.' Harvard's 5/14 package would eliminate the union-administered legal expense fund entirely."
     },
     {
       "id": "26",
@@ -1178,7 +1178,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Expanded emergency grant fund. Clear and accessible application/distribution process.",
-      "harvardPosition": "No counter yet on record."
+      "harvardPosition": "No substantive counter through early 2026. Harvard's 5/14 package would eliminate the union-administered emergency fund entirely, alongside healthcare, childcare, dental, legal expense, non-citizen worker assistance, and dependent premiums."
     },
     {
       "id": "33",
@@ -1187,7 +1187,7 @@
       "status": "in-negotiation",
       "statusLabel": "In negotiation",
       "unionAsks": "Agency shop / 'fair-share' arrangement — everyone who benefits from the contract contributes via dues or an equivalent fee. Standard across most graduate union contracts. Already in place for other Harvard unions (HUCTW).",
-      "harvardPosition": "Resists. Argues graduate workers are 'different' because they enter as students. Wants to maintain current open-shop structure where many workers benefit from the contract without contributing to union finances."
+      "harvardPosition": "Resists fair-share arrangements. Argues graduate workers are 'different' because they enter as students. Wants to maintain current open-shop structure where many workers benefit from the contract without contributing to union finances. Harvard's 5/14 package would eliminate fair-share fees outright."
     },
     {
       "id": "AF",
